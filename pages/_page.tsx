@@ -36,7 +36,7 @@ export class StaticPage<S> extends React.Component<Props, S> {
     this.store = getStore(props.initialState, props.server);
   }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
+  shouldComponentUpdate() {
     return true;
   }
 

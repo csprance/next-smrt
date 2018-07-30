@@ -24,8 +24,3 @@ declare module '*.json' {
   const resource: any;
   export = resource;
 }
-declare interface Window {
-  Twitch?: {
-    Embed: any;
-  };
-}

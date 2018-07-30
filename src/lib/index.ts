@@ -33,3 +33,4 @@ export const isClient = () => typeof window !== 'undefined';
 
 export const getSlugFromPathname = (): string =>
   !isServer() ? window.location.pathname.split('/')[2] : '';
+export const isProd = () => process.env.NODE_ENV === 'production';
