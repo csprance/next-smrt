@@ -1,6 +1,6 @@
-import { createServer } from 'http';
-import { parse } from 'url';
+import * as express from 'express';
 import * as next from 'next';
+const bodyParser = require('body-parser');
 
 const port = parseInt(process.env.PORT as string, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -8,18 +8,28 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  createServer((req, res) => {
-    const parsedUrl = parse(req.url as string, true);
-    const { pathname, query }: {pathname?: any, query: any} = parsedUrl;
+  const server = express();
+  server.enable('trust proxy');
 
-    if (pathname === '/a') {
-      app.render(req, res, '/a', query);
-    } else if (pathname === '/b') {
-      app.render(req, res, '/b', query);
-    } else {
-      handle(req, res, parsedUrl);
-    }
-  }).listen(port, (err: Error) => {
+  server.use(
+    bodyParser.urlencoded({
+      extended: true
+    })
+  );
+
+  // TODO: Right here would be a great spot to route an api request off to an internal API that has a key/auth
+  // TODO: Since this is never exposed to the user you can do secure things here
+  server.post(`/api/:id`, async (req, res) => {
+    const { name } = req.body;
+    const { id } = req.params;
+    return await res.json([{ id, name }]);
+  });
+
+  server.get('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  server.listen(port, (err: Error) => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
   });

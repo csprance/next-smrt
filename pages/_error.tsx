@@ -19,7 +19,7 @@ class ErrorPage extends React.Component<{ statusCode: number }> {
     return (
       <FlexCenter>
         <Head>
-          <title>Miscreated - Error</title>
+          <title>Error</title>
         </Head>
         <h1>{this.props.statusCode}</h1>
       </FlexCenter>

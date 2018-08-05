@@ -1,8 +1,3 @@
-/** MyApp
- * project: eibot
- * author: Chris Sprance - csprance
- * description:
- */
 import * as React from 'react';
 import App, { Container } from 'next/app';
 import { MuiThemeProvider } from '@material-ui/core/styles';

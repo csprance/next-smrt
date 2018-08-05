@@ -1,8 +1,3 @@
-/** getPageContext
- * project: eibot
- * author: Chris Sprance - csprance
- * description:
- */
 import { SheetsRegistry } from 'jss';
 import {
   createMuiTheme,
