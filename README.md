@@ -2,12 +2,15 @@
 
 Next.js Styled Components, Material-ui, Redux, Typescript
 
-## feature
-### integration
+## Features
+### Uses
  - next@6
  - react@16
  - redux-thunk
  - redux-persist@4
+ - typescript
+ - custom next server using express
+ 
 
 ### using cdn
  - material-icons font
@@ -16,7 +19,7 @@ Next.js Styled Components, Material-ui, Redux, Typescript
 ## installation
 
 ```sh
-git clone https://github.com/deptno/next.js-typescript-starter-kit
+git clone https://github.com/csprance/next-smrt
 ```
 
 ## setup

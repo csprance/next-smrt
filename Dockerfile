@@ -1,12 +1,9 @@
-FROM node:alpine
-# Create app directory
-RUN mkdir -p /next
-WORKDIR /next
-# Install app dependencies
+FROM node:10
+RUN mkdir /next-smrt
+WORKDIR /next-smrt
 COPY package.json .
 RUN npm install
-# Bundle app source
 COPY . .
-RUN npm run build
 EXPOSE 3000
-CMD [ "npm", "start" ]
+RUN npm run build
+CMD npm run start

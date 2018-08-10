@@ -19,6 +19,7 @@ class MyDocument extends Document {
         <Head>
           <title>{SITE_TITLE}</title>
           <meta charSet="utf-8" />
+          <link rel="icon" type="image/ico" href="/static/favicon.ico" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"
@@ -50,6 +51,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
+          <link rel="stylesheet" href="/static/styles/main.css" />
           {this.props.styleTags}
         </Head>
         <body>

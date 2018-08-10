@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nextsmrt:
+    container_name: nextsmrt
+    build: .
+    networks:
+      - web
+    ports:
+      - 3000
+    environment:
+      NODE_ENV: 'production'
+    labels:
+      traefik.docker.network: 'web'
+      traefik.enable: 'true'
+      traefik.backend: 'next-smrt'
+      traefik.frontend.rule: 'Host:next-smrt.localhost'
+      traefik.port: '3000'
+
+networks:
+  web:
+    external: true

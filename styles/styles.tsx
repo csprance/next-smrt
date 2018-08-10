@@ -4,6 +4,7 @@ import Responsive from 'react-responsive';
 import { css } from 'styled-components';
 import styled from 'styled-components';
 import { midGray } from './colors';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 export const mediaQuerySizes = {
   giant: 1170,
@@ -12,8 +13,26 @@ export const mediaQuerySizes = {
   phone: 500
 };
 
+// A theme with custom primary and secondary color.
+// It's optional.
+export const theme = createMuiTheme({
+  palette: {
+    background: {
+      default: '#21252b'
+    },
+    primary: {
+      main: '#282c34'
+    },
+    secondary: {
+      main: '#76ff03'
+    }
+  }
+});
+
 export const Desktop = props => <Responsive {...props} minWidth={992} />;
-export const Tablet = props => <Responsive {...props} minWidth={768} maxWidth={991} />;
+export const Tablet = props => (
+  <Responsive {...props} minWidth={768} maxWidth={991} />
+);
 export const Mobile = props => <Responsive {...props} maxWidth={767} />;
 export const Default = props => <Responsive {...props} minWidth={768} />;
 
