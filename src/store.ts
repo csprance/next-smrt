@@ -25,7 +25,7 @@ export const getStore = (state, isServer?): Store<RootState> => {
       } else {
         mw.push(
           createLogger({
-            predicate: (getState, action) => !/^@@/.test(action.type),
+            predicate: (_getState, action) => !/^@@/.test(action.type),
             collapsed: true
           })
         );
