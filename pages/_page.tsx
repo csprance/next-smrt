@@ -3,7 +3,6 @@ import { Store } from 'redux';
 import { getStore } from '../src/store';
 import { RootState } from '../src/redux';
 
-
 interface Props {
   state: RootState;
   server: boolean;
@@ -30,7 +29,6 @@ export class StaticPage<S> extends React.Component<Props, S> {
     };
   }
 
-
   constructor(props) {
     super(props);
     this.store = getStore(props.initialState, props.server);
@@ -39,7 +37,6 @@ export class StaticPage<S> extends React.Component<Props, S> {
   shouldComponentUpdate() {
     return true;
   }
-
 
   render() {
     console.warn('must override render()');

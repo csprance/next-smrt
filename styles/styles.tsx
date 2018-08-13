@@ -13,18 +13,17 @@ export const mediaQuerySizes = {
   phone: 500
 };
 
-// A theme with custom primary and secondary color.
-// It's optional.
+// The material ui theme
 export const theme = createMuiTheme({
   palette: {
     background: {
-      default: '#21252b'
+      default: '#ededed'
     },
     primary: {
-      main: '#282c34'
+      main: '#3f50b2'
     },
     secondary: {
-      main: '#76ff03'
+      main: '#fc3d04'
     }
   }
 });

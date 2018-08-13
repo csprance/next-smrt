@@ -19,7 +19,12 @@ class MyDocument extends Document {
         <Head>
           <title>{SITE_TITLE}</title>
           <meta charSet="utf-8" />
-          <link rel="icon" type="image/ico" href="/static/favicon.ico" />
+          <link
+            rel="shortcut icon"
+            href="/static/favicon.ico"
+            type="image/x-icon"
+          />
+          <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"

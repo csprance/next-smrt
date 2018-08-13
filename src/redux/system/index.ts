@@ -6,7 +6,7 @@ import { Reducer } from 'redux';
 const defaultState = {} as SystemState;
 
 export const reducer: Reducer<SystemState> = (state = defaultState, action) => {
-  const { type, payload } = action;
+  const { type } = action;
   switch (type) {
     case ActionTypes.BOOT:
       return {
@@ -37,7 +37,7 @@ export function boot() {
 const SESSION = createActions(ActionTypes.SESSION);
 
 export function session() {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     dispatch({ type: SESSION[REQUEST] });
     try {
       const userInfo: any = await (async _ => {

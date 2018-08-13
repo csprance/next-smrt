@@ -2,7 +2,6 @@ import * as React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 
-
 const FlexCenter = styled.div`
   display: flex;
   align-items: center;
@@ -15,13 +14,19 @@ class ErrorPage extends React.Component<{ statusCode: number }> {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
     return { statusCode };
   }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   render() {
+    const { statusCode } = this.props;
     return (
       <FlexCenter>
         <Head>
           <title>Error</title>
         </Head>
-        <h1>{this.props.statusCode}</h1>
+        <h1>{statusCode}</h1>
       </FlexCenter>
     );
   }

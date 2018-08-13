@@ -22,7 +22,7 @@ export function cleanObject(object: object, valueKeeper?: any) {
   }, {});
 }
 
-function openInNewTab(url: string) {
+export function openInNewTab(url: string) {
   const a = document.createElement('a');
   a.target = '_blank';
   a.href = url;
@@ -30,7 +30,3 @@ function openInNewTab(url: string) {
 }
 export const isServer = () => typeof window === 'undefined';
 export const isClient = () => typeof window !== 'undefined';
-
-export const getSlugFromPathname = (): string =>
-  !isServer() ? window.location.pathname.split('/')[2] : '';
-export const isProd = () => process.env.NODE_ENV === 'production';

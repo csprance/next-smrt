@@ -41,12 +41,6 @@ export const SITE_IMAGE = ''
 if each variable evaluated false, it does not load related library
 
 
-## changelog
-
-### 0.0.1
-
-- Initial Commit
-  
 ---
 
 ## env
@@ -87,3 +81,13 @@ npm run export # create .out directory
 ## license
 
 UNLICENSE
+
+## changelog
+
+### 0.0.2
+
+- Updated deps and added in docker configs
+
+### 0.0.1
+
+- Initial Commit

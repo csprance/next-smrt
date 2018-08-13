@@ -32,7 +32,7 @@ function updateUrl(
   replace = false,
   type: ChangeUrlType = PUSH
 ) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     if (!replace) {
       options = {
         ...Router.router.query,
@@ -41,6 +41,7 @@ function updateUrl(
     }
 
     const query = Object.entries(options)
+      // @ts-ignore
       .filter(([key, value]) => value !== undefined && value !== null)
       .reduce((ret, [key, value]) => {
         ret[key] = value;
