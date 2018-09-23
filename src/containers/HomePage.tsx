@@ -71,10 +71,8 @@ class HomePage extends React.Component<Props, State> {
 
   handleClick = () => {
     this.props.addTodoFlow({
-      dateAdded: new Date(),
       todoText: this.state.todo,
       id: Date.now(),
-      expires: false,
       completed: false
     });
     this.setState({

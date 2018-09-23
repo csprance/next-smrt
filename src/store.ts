@@ -1,49 +1,12 @@
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { reducer, RootState } from './redux';
-import { Store } from 'redux';
-import { DEV } from './constants/env';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import { persistStore, autoRehydrate } from 'redux-persist';
-import { session } from './redux/system';
 
-let store;
-
-export const getStore = (state, isServer?): Store<RootState> => {
-  if (isServer && typeof window === 'undefined') {
-    return createStore<RootState>(reducer, state, applyMiddleware(thunk));
-  } else {
-    const composeEnhancers =
-      (DEV && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-
-    if (!store) {
-      const mw = [thunk];
-      if (!DEV) {
-        if (window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
-          window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function() {};
-        }
-      } else {
-        mw.push(
-          createLogger({
-            predicate: (_getState, action) => !/^@@/.test(action.type),
-            collapsed: true
-          })
-        );
-      }
-
-      store = createStore<RootState>(
-        reducer,
-        state,
-        composeEnhancers(applyMiddleware(...mw), autoRehydrate())
-      );
-      // Bootstrap store
-      store.dispatch(session());
-
-      const whitelist = ['persist'];
-      persistStore(store, { whitelist }, _ => {
-        console.log(`define whitelist: ${whitelist.join(', ')}`);
-      });
-    }
-    return store;
-  }
+export const initializeStore = (initialState: RootState = undefined) => {
+  return createStore(
+    reducer,
+    initialState,
+    composeWithDevTools(applyMiddleware(thunk))
+  );
 };
