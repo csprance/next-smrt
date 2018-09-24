@@ -47,6 +47,7 @@ const Row = styled.div`
 const Spacer = styled.div`
   height: 50px;
 `;
+
 type Props = {
   todo: TodoState;
   addTodoFlow: (todo: Todo) => Promise<void>;

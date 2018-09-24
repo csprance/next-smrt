@@ -4,6 +4,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import flush from 'styled-jsx/server';
 import {
+  SITE_AUTHOR,
   SITE_DESCRIPTION,
   SITE_IMAGE,
   SITE_NAME,
@@ -81,7 +82,7 @@ class MyDocument extends Document {
           <title>{SITE_TITLE}</title>
           <meta charSet="utf-8" />
           <meta name="description" content={SITE_DESCRIPTION} />
-          <meta name="author" content="Entrada Interactive LLC" />
+          <meta name="author" content={SITE_AUTHOR} />
           <link
             rel="shortcut icon"
             href="/static/favicon.ico"

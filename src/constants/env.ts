@@ -4,3 +4,4 @@ export const SITE_NAME = 'Next-SMRT';
 export const SITE_TITLE = 'Next-SMRT boilerplate';
 export const SITE_DESCRIPTION = 'Next - Styled components/Material-ui/Redux/Typescript';
 export const SITE_IMAGE = '';
+export const SITE_AUTHOR = 'Chris Sprance';
