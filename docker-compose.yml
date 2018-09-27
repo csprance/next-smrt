@@ -6,8 +6,6 @@ services:
     build: .
     networks:
       - web
-    ports:
-      - 3000
     environment:
       NODE_ENV: 'production'
     labels:
