@@ -13,20 +13,8 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "typeRoots": [
-      "./node_modules/@types/",
-      "./src/@types/"
-    ],
-    "lib": [
-      "dom",
-      "es2015",
-      "es2017.object",
-      "es2016"
-    ]
+    "typeRoots": ["./node_modules/@types/", "./src/@types/"],
+    "lib": ["dom", "es2015", "es2017.object", "es2016"]
   },
-  "exclude": [
-    "node_modules",
-    "out",
-    ".next"
-  ]
+  "exclude": ["node_modules", "out", ".next"]
 }

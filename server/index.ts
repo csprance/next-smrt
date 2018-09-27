@@ -9,7 +9,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
-  server.enable('trust proxy');
+  server.set('trust proxy', true);
 
   server.use(
     bodyParser.urlencoded({

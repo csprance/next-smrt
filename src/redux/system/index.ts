@@ -1,4 +1,4 @@
-import { REHYDRATE } from 'redux-persist/constants';
+import { REHYDRATE } from 'redux-persist';
 import { createActions, FAIL, REQUEST, SUCCESS } from '../common';
 import { saveUserInfo } from '../persist';
 import { Reducer } from 'redux';
