@@ -11,11 +11,10 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 
 import { media } from '../../styles/styles';
-import { RootState } from '../redux';
+import { RootState } from '../redux/redux-types';
 import { TodoState } from '../redux/todo';
-import { addTodoFlow, toggleComplete } from '../redux/todo/todo-actions';
 import SingleTodo from '../components/SingleTodo';
-import { Todo } from '../redux/todo/todo-types';
+import { Todo, todoActions } from '../redux/todo';
 import { notify } from '../lib/notify';
 
 const Wrapper = styled.div`
@@ -146,7 +145,7 @@ export default connect(
     todo: store.todo
   }),
   dispatch => ({
-    addTodoFlow: (todo: Todo) => addTodoFlow(todo, dispatch),
-    toggleComplete: (id: number) => dispatch(toggleComplete(id))
+    addTodoFlow: (todo: Todo) => dispatch(todoActions.addTodoThunk(todo)),
+    toggleComplete: (id: number) => dispatch(todoActions.toggleComplete(id))
   })
 )(HomePage);
