@@ -1,16 +1,7 @@
 import { combineReducers } from 'redux';
-import { reducer as persist, PersistState } from './persist';
-import { reducer as system, SystemState } from './system';
-import { reducer as todo, TodoState } from './todo';
+import { todoReducer as todo } from './todo';
+import { RootState } from './redux-types';
 
 export const reducer = combineReducers<RootState>({
-  persist,
-  todo,
-  system
+  todo
 });
-
-export interface RootState {
-  persist: PersistState;
-  todo: TodoState;
-  system: SystemState;
-}

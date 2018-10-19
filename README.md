@@ -7,11 +7,12 @@ Next.js Styled Components, Material-ui, Redux, Typescript
 
 ## Features
 ### Uses
- - next@6
+ - next@7
  - react@16
+ - redux@4
  - redux-thunk
- - redux-persist@4
  - typescript
+ - typesafe-actions
  - custom next server using express
  
 
@@ -86,6 +87,9 @@ npm run export # create .out directory
 UNLICENSE
 
 ## changelog
+### 0.0.3
+
+- Changed to redux 4 next7
 
 ### 0.0.2
 

@@ -1,19 +1,16 @@
-import { Dispatch } from 'redux';
 import { createAsyncAction, createAction } from 'typesafe-actions';
-import { RootState } from '../index';
-import { addToDb } from './todo-helpers';
-import { Todo } from './todo-types';
+import { AsyncThunkResult } from '../redux-types';
+import { addToDb } from './utils';
+import { Todo } from './types';
 
 export const addTodo = createAsyncAction(
   'todo/REQUEST',
   'todo/SUCCESS',
   'todo/FAILED'
 )<void, any[], string>();
-
-export const addTodoFlow = async (
-  todo: Todo,
-  dispatch: Dispatch<RootState>
-): Promise<void> => {
+export const addTodoThunk = (
+  todo: Todo
+): AsyncThunkResult<void> => async dispatch => {
   // Tell Redux were requesting data from the db
   dispatch(addTodo.request());
   try {
@@ -21,7 +18,7 @@ export const addTodoFlow = async (
     dispatch(addTodo.success(await addToDb(todo)));
   } catch (err) {
     // Catch the err
-    addTodo.failure(err.toString());
+    dispatch(addTodo.failure(err.toString()));
   }
 };
 
