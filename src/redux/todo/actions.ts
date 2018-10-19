@@ -1,5 +1,5 @@
 import { createAsyncAction, createAction } from 'typesafe-actions';
-import {AsyncThunkResult} from '../redux-types';
+import { AsyncThunkResult } from '../redux-types';
 import { addToDb } from './utils';
 import { Todo } from './types';
 
@@ -10,7 +10,7 @@ export const addTodo = createAsyncAction(
 )<void, any[], string>();
 export const addTodoThunk = (
   todo: Todo
-): AsyncThunkResult<void> => async dispatch =>  {
+): AsyncThunkResult<void> => async dispatch => {
   // Tell Redux were requesting data from the db
   dispatch(addTodo.request());
   try {

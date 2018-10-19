@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 
 import { media } from '../../styles/styles';
-import { RootState } from '../redux/redux-types';
+import { Dispatch, RootState } from '../redux/redux-types';
 import { TodoState } from '../redux/todo';
 import SingleTodo from '../components/SingleTodo';
 import { Todo, todoActions } from '../redux/todo';
@@ -48,9 +48,9 @@ const Spacer = styled.div`
 `;
 
 type Props = {
-  todo: TodoState;
-  addTodoFlow: (todo: Todo) => Promise<void>;
-  toggleComplete: (id: number) => void;
+  todos?: TodoState;
+  addTodoFlow?: (todo: Todo) => Promise<void>;
+  toggleComplete?: (id: number) => void;
 };
 type State = {
   todo: string;
@@ -69,7 +69,7 @@ class HomePage extends React.Component<Props, State> {
     this.props.toggleComplete(id);
   };
 
-  handleClick = () => {
+  handleClick = async () => {
     this.props.addTodoFlow({
       todoText: this.state.todo,
       id: Date.now(),
@@ -87,6 +87,8 @@ class HomePage extends React.Component<Props, State> {
   };
 
   render() {
+    const { todos } = this.props;
+    const { todo } = this.state;
     return (
       <Wrapper>
         <AppBar position="static">
@@ -110,7 +112,7 @@ class HomePage extends React.Component<Props, State> {
               fullWidth
               id="todo"
               label="Add Todo"
-              value={this.state.todo}
+              value={todo}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -127,7 +129,7 @@ class HomePage extends React.Component<Props, State> {
         </Column>
         <Spacer />
         <Column>
-          {this.props.todo.map(item => (
+          {todos.map(item => (
             <SingleTodo
               handleCheckBoxTick={this.handleCheckBoxTick}
               todo={item}
@@ -142,9 +144,9 @@ class HomePage extends React.Component<Props, State> {
 
 export default connect(
   (store: RootState) => ({
-    todo: store.todo
+    todos: store.todo
   }),
-  dispatch => ({
+  (dispatch: Dispatch) => ({
     addTodoFlow: (todo: Todo) => dispatch(todoActions.addTodoThunk(todo)),
     toggleComplete: (id: number) => dispatch(todoActions.toggleComplete(id))
   })

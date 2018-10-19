@@ -10,6 +10,11 @@ export const initializeStore = (initialState: RootState = undefined) => {
   return createStore(
     reducer,
     initialState,
-    composeWithDevTools(applyMiddleware(thunk as ThunkMiddleware<RootState, RootAction>, createLogger()))
+    composeWithDevTools(
+      applyMiddleware(
+        thunk as ThunkMiddleware<RootState, RootAction>,
+        createLogger()
+      )
+    )
   );
 };
