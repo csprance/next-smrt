@@ -4,16 +4,16 @@ import { Provider } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
-import getPageContext from '../src/lib/getPageContext';
 import withReduxStore from '../src/lib/with-redux-store';
+import getPageContext from '../src/lib/getPageContext';
 
 class MyApp extends App {
+  pageContext = null;
+
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
   }
-
-  pageContext = null;
 
   componentDidMount() {
     // Remove the server-side injected CSS.

@@ -17,7 +17,7 @@ function createPageContext() {
 export default function getPageContext() {
   // Make sure to create a new context for every server-side request so that data
   // isn't shared between connections (which would be bad).
-  const { browser } = process as any;
+  const { browser } = process ? (process as any) : null;
   let { __INIT_MATERIAL_UI__ } = global as any;
   if (!browser) {
     return createPageContext();

@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
+import Link from 'next/link';
 
 import { media } from '../../styles/styles';
 import { Dispatch, RootState } from '../redux/redux-types';
@@ -92,7 +93,7 @@ class HomePage extends React.Component<Props, State> {
     return (
       <Wrapper>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar >
             <IconButton
               onClick={this.handleMenuButtonClick}
               color="inherit"
@@ -137,6 +138,10 @@ class HomePage extends React.Component<Props, State> {
             />
           ))}
         </Column>
+        <Spacer />
+        <Link href={'/about'}>
+          <a>About</a>
+        </Link>
       </Wrapper>
     );
   }
