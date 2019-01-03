@@ -69,6 +69,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
-
-scripts

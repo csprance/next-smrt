@@ -33,17 +33,12 @@ set SEO variables
 > src/constants/env.ts
 
 ```typescript
-export const DEV = process.env.NODE_ENV !== 'production'
-
 // for meta tag <og & twitter>
 export const SITE_NAME = ''
 export const SITE_TITLE = ''
 export const SITE_DESCRIPTION = ''
 export const SITE_IMAGE = ''
 ```
-
-if each variable evaluated false, it does not load related library
-
 
 ---
 
@@ -87,6 +82,9 @@ npm run export # create .out directory
 UNLICENSE
 
 ## changelog
+### 0.0.6
+
+- Updated a bunch of dependencies and adjusted configs to suit.
 ### 0.0.3
 
 - Changed to redux 4 next7
