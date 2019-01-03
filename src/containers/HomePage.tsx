@@ -10,6 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import { media } from '../../styles/styles';
 import { Dispatch, RootState } from '../redux/redux-types';
@@ -17,6 +18,7 @@ import { TodoState } from '../redux/todo';
 import SingleTodo from '../components/SingleTodo';
 import { Todo, todoActions } from '../redux/todo';
 import { notify } from '../lib/notify';
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -92,6 +94,9 @@ class HomePage extends React.Component<Props, State> {
     const { todo } = this.state;
     return (
       <Wrapper>
+        <Head>
+          <title>Next-SMRT - Todo</title>
+        </Head>
         <AppBar position="static">
           <Toolbar>
             <IconButton
