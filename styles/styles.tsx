@@ -15,6 +15,9 @@ export const mediaQuerySizes = {
 
 // The material ui theme
 export const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
   palette: {
     background: {
       default: '#ededed'

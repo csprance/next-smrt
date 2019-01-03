@@ -27,7 +27,7 @@ class SingleTodo extends React.Component<Props> {
     return (
       <Wrapper>
         <Typography
-          variant={'headline'}
+          variant={'h5'}
           gutterBottom
           style={{
             textDecoration: todo.completed ? 'line-through' : 'none',

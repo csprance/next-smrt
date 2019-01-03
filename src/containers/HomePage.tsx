@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -93,7 +93,7 @@ class HomePage extends React.Component<Props, State> {
     return (
       <Wrapper>
         <AppBar position="static">
-          <Toolbar >
+          <Toolbar>
             <IconButton
               onClick={this.handleMenuButtonClick}
               color="inherit"
@@ -101,7 +101,7 @@ class HomePage extends React.Component<Props, State> {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit">
+            <Typography variant="h6" color="inherit">
               Next-SMRT
             </Typography>
           </Toolbar>
@@ -117,15 +117,9 @@ class HomePage extends React.Component<Props, State> {
               onChange={this.handleChange}
               margin="normal"
             />
-            <Button
-              onClick={this.handleClick}
-              variant="fab"
-              color="secondary"
-              mini
-              aria-label="Add"
-            >
+            <Fab size={'small'} onClick={this.handleClick}  color="secondary" aria-label="Add">
               <AddIcon />
-            </Button>
+            </Fab>
           </Row>
         </Column>
         <Spacer />

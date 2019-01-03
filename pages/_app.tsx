@@ -8,7 +8,7 @@ import withReduxStore from '../src/lib/with-redux-store';
 import getPageContext from '../src/lib/getPageContext';
 
 class MyApp extends App {
-  pageContext = null;
+  pageContext: any;
 
   constructor(props) {
     super(props);

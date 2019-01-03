@@ -1,6 +1,6 @@
 {
   "name": "next-smrt",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "author": "Chris Sprance <chrissprance@gmail.com>",
   "scripts": {
     "dev": "nodemon server/index.ts",
@@ -8,94 +8,59 @@
     "build": "next build && tsc --project tsconfig.server.json",
     "export": "next export",
     "analyze": "cross-env NODE_ENV=production ANALYZE=true next build",
-    "repl": "ts-node -P working/tsconfig.json working/repl.ts",
+    "repl": "ts-node -P scripts/tsconfig.json scripts/repl.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@material-ui/core": "^3.2.2",
+    "@material-ui/core": "^3.8.1",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
     "jss": "^9.8.7",
     "next": "^7.0.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-jss": "^8.6.1",
-    "react-redux": "^5.0.7",
+    "react-redux": "^5.1.1",
     "react-responsive": "^5.0.0",
     "redux": "^4.0.1",
-    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^3.4.9",
-    "sweetalert": "^2.1.0",
-    "typesafe-actions": "^2.0.4",
+    "styled-components": "^4.1.3",
+    "sweetalert": "^2.1.2",
+    "typesafe-actions": "^3.0.0",
     "yup": "^0.26.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.2.2",
     "@types/classnames": "^2.2.6",
-    "@types/enzyme": "^3.1.14",
-    "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/google.analytics": "^0.0.39",
-    "@types/jest": "^23.3.2",
-    "@types/next": "^7.0.3",
-    "@types/node": "^10.11.0",
+    "@types/jest": "^23.3.11",
+    "@types/next": "^7.0.6",
+    "@types/node": "^10.12.18",
     "@types/qs": "^6.5.1",
-    "@types/react": "^16.4.18",
-    "@types/react-redux": "^6.0.9",
+    "@types/react": "^16.7.18",
+    "@types/react-redux": "^6.0.11",
     "@types/redux-logger": "^3.0.6",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
-    "cssnano": "^4.1.3",
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
-    "fs-extra": "^7.0.0",
+    "cssnano": "^4.1.8",
+    "fs-extra": "^7.0.1",
     "jest": "^23.6.0",
     "nextjs-export-path-map": "^0.1.2",
-    "nodemon": "^1.18.4",
+    "nodemon": "^1.18.9",
     "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.1.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-logger": "^3.0.6",
-    "ts-jest": "^23.10.2",
+    "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "typescript": "latest",
+    "tslint": "^5.12.0",
+    "typescript": "next",
     "typescript-babel-jest": "^1.0.5",
-    "webpack-bundle-analyzer": "^3.0.2"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testMatch": [
-      "**/*.(test|spec).(ts|tsx)"
-    ],
-    "globals": {
-      "ts-jest": {
-        "useBabelrc": true,
-        "tsConfigFile": "jest.tsconfig.json"
-      }
-    },
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "enzyme.js"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/enzyme.js",
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "text-summary"
-    ]
+    "webpack-bundle-analyzer": "^3.0.3"
   }
 }
