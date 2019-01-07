@@ -82,6 +82,9 @@ npm run export # create .out directory
 UNLICENSE
 
 ## changelog
+### 0.0.7
+
+- Changed some redux boilerplate stuff got rid of uneeded deps
 ### 0.0.6
 
 - Updated a bunch of dependencies and adjusted configs to suit.
