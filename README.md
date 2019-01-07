@@ -1,6 +1,5 @@
 # Next-SMRT
-
-Next.js Styled Components, Material-ui, Redux, Typescript
+> Next.js, Styled Components, Material-UI, Redux (With Typesafe-Actions), Typescript
 
 ## Example TODO List App
 ![Example To Do App](https://csprance.com/shots/2018-08-12_80391bbd-a273-454b-9d85-f45c0bca6d37.png)
@@ -13,7 +12,7 @@ Next.js Styled Components, Material-ui, Redux, Typescript
  - [redux-thunk](https://github.com/reduxjs/redux-thunk)
  - [typescript](https://github.com/Microsoft/TypeScript)
  - [typesafe-actions](https://github.com/piotrwitek/typesafe-actions)
- - custom next server using [express](https://github.com/expressjs/express)
+ - Custom server for Next.js using [express](https://github.com/expressjs/express)
  
 
 ### using cdn
@@ -50,7 +49,7 @@ export const SITE_IMAGE = ''
 
 ```
 npm install
-npm run start:dev # run
+npm run dev # run
 ```
 
 #### test
