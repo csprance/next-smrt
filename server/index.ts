@@ -1,6 +1,6 @@
+import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import * as next from 'next';
-const bodyParser = require('body-parser');
 
 const port = parseInt(process.env.PORT as string, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -22,7 +22,7 @@ app.prepare().then(() => {
   server.post(`/api/:id`, async (req, res) => {
     const { name } = req.body;
     const { id } = req.params;
-    return await res.json([{ id, name }]);
+    return res.json([{ id, name }]);
   });
 
   server.get('*', (req, res) => {
@@ -30,7 +30,9 @@ app.prepare().then(() => {
   });
 
   server.listen(port, (err: Error) => {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
     console.log(`> Ready on http://localhost:${port}`);
   });
 });

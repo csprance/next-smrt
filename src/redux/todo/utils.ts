@@ -2,5 +2,5 @@
 import { Todo } from './types';
 
 export const addToDb = async (todo: Todo): Promise<any[]> => {
-  return await [todo];
+  return [todo];
 };

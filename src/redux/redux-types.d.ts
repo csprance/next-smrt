@@ -3,11 +3,11 @@ import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { StateType } from 'typesafe-actions';
 
 import { rootReducer } from './index';
-import { TodoActions } from './todo';
+import { Types as TodoTypes } from './todo';
 
 export interface RootState extends StateType<typeof rootReducer> {}
 
-export type RootAction = TodoActions;
+export type RootAction = TodoTypes.ActionTypes;
 
 export type AsyncThunkResult<R> = ThunkAction<
   Promise<R>,

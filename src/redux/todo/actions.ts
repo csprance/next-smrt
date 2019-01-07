@@ -1,7 +1,7 @@
-import { createAsyncAction, createAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 import { AsyncThunkResult } from '../redux-types';
-import { addToDb } from './utils';
 import { Todo } from './types';
+import { addToDb } from './utils';
 
 export const addTodo = createAsyncAction(
   'todo/REQUEST',

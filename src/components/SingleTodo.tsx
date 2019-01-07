@@ -1,8 +1,8 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { Todo } from '../redux/todo';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography/Typography';
+import * as React from 'react';
+import styled from 'styled-components';
+import { Types as TodoTypes } from '../redux/todo';
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const Spacer = styled.div`
 `;
 
 type Props = {
-  todo: Todo;
+  todo: TodoTypes.Todo;
   handleCheckBoxTick: any;
 };
 class SingleTodo extends React.Component<Props> {

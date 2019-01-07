@@ -1,5 +1,5 @@
 // The Default state for the db
-import { TodoState } from './types';
+import { State } from './types';
 
 export default [
   {
@@ -32,4 +32,4 @@ export default [
     todoText: 'Hack it in to your own boilerplate',
     completed: false
   }
-] as TodoState;
+] as State;

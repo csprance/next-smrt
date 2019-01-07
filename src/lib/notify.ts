@@ -1,8 +1,3 @@
-/** notify
- * project: eibot
- * author: Chris Sprance - csprance
- * description:
- */
 import swal from 'sweetalert';
 
 const config = {

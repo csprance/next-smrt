@@ -1,5 +1,5 @@
-import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
+import * as React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 import flush from 'styled-jsx/server';
 import {

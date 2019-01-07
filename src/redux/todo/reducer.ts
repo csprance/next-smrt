@@ -1,24 +1,21 @@
 import { getType } from 'typesafe-actions';
 
-import * as todoActions from './actions';
-import { default as defaultState } from './state';
-import { TodoState } from './index';
-import { TodoActions } from './types';
+import { actions, defaultState, Types } from '../todo';
 
 export default (
-  state: TodoState = defaultState,
-  action: TodoActions
-): TodoState => {
+  state: Types.State = defaultState,
+  action: Types.ActionTypes
+): Types.State => {
   switch (action.type) {
-    case getType(todoActions.addTodo.request):
+    case getType(actions.addTodo.request):
       return state;
-    case getType(todoActions.addTodo.success):
+    case getType(actions.addTodo.success):
       return [].concat(state, action.payload);
-    case getType(todoActions.addTodo.failure):
+    case getType(actions.addTodo.failure):
       return state;
-    case getType(todoActions.removeTodo):
+    case getType(actions.removeTodo):
       return state.filter(todo => todo.id === action.payload);
-    case getType(todoActions.toggleComplete):
+    case getType(actions.toggleComplete):
       return state.map(todo => {
         if (todo.id === action.payload) {
           todo.completed = !todo.completed;

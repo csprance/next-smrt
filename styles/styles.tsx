@@ -1,10 +1,8 @@
-// these sizes are arbitrary and you can set them to whatever you wish
+import { createMuiTheme } from '@material-ui/core/styles';
 import * as React from 'react';
 import Responsive from 'react-responsive';
-import { css } from 'styled-components';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { midGray } from './colors';
-import { createMuiTheme } from '@material-ui/core/styles';
 
 export const mediaQuerySizes = {
   giant: 1170,
@@ -31,6 +29,7 @@ export const theme = createMuiTheme({
   }
 });
 
+// these sizes are arbitrary and you can set them to whatever you wish
 export const Desktop = props => <Responsive {...props} minWidth={992} />;
 export const Tablet = props => (
   <Responsive {...props} minWidth={768} maxWidth={991} />

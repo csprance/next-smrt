@@ -1,12 +1,12 @@
 // All the types associated with the state from the db
 import { ActionType } from 'typesafe-actions';
-import * as todoActions from './actions';
+import { actions } from '../todo';
 
 export type Todo = {
   id: number;
   completed: boolean;
   todoText: string;
 };
-export type TodoState = Todo[];
 
-export type TodoActions = ActionType<typeof todoActions>;
+export type State = Todo[];
+export type ActionTypes = ActionType<typeof actions>;
