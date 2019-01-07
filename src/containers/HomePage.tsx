@@ -48,111 +48,98 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
+const { useState } = React;
 type Props = {
-  todos?: TodoTypes.State;
-  addTodoFlow?: (todo: TodoTypes.Todo) => Promise<void>;
-  toggleComplete?: (id: number) => void;
-  deleteTodo?: (id: number) => void;
+  todos: TodoTypes.State;
+  addTodoFlow: (todo: TodoTypes.Todo) => Promise<void>;
+  toggleComplete: (id: number) => void;
+  deleteTodo: (id: number) => void;
 };
-type State = {
-  todo: string;
-};
-class HomePage extends React.Component<Props, State> {
-  public static defaultProps = {};
-  state = {
-    todo: ''
-  };
+function HomePage({ todos, addTodoFlow, toggleComplete, deleteTodo }: Props) {
+  const [todo, setTodo] = useState('');
 
-  handleMenuButtonClick = () => {
+  const handleMenuButtonClick = () => {
     notify('Also comes with SweetAlert');
   };
 
-  handleCheckBoxTick = id => {
-    this.props.toggleComplete(id);
+  const handleCheckBoxTick = id => {
+    toggleComplete(id);
   };
 
-  handleDelete = id => {
-    this.props.deleteTodo(id);
+  const handleDelete = id => {
+    deleteTodo(id);
   };
 
-  handleClick = async () => {
-    this.props.addTodoFlow({
-      todoText: this.state.todo,
+  const handleClick = () => {
+    addTodoFlow({
+      todoText: todo,
       id: Date.now(),
       completed: false
     });
-    this.setState({
-      todo: ''
-    });
+    setTodo('');
   };
 
-  handleChange = e => {
-    this.setState({
-      todo: e.target.value
-    });
+  const handleChange = e => {
+    setTodo(e.target.value);
   };
 
-  render() {
-    const { todos } = this.props;
-    const { todo } = this.state;
-    return (
-      <Wrapper>
-        <Head>
-          <title>Next-SMRT - Todo</title>
-        </Head>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              onClick={this.handleMenuButtonClick}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit">
-              Next-SMRT
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Spacer />
-        <Column>
-          <Row>
-            <TextField
-              fullWidth
-              id="todo"
-              label="Add Todo"
-              value={todo}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <Fab
-              size={'small'}
-              onClick={this.handleClick}
-              color="secondary"
-              aria-label="Add"
-            >
-              <AddIcon />
-            </Fab>
-          </Row>
-        </Column>
-        <Spacer />
-        <Column>
-          {todos.map(item => (
-            <SingleTodo
-              handleDelete={this.handleDelete}
-              handleCheckBoxTick={this.handleCheckBoxTick}
-              todo={item}
-              key={item.id}
-            />
-          ))}
-        </Column>
-        <Spacer />
-        <Link href={'/about'}>
-          <a>About</a>
-        </Link>
-      </Wrapper>
-    );
-  }
+  return (
+    <Wrapper>
+      <Head>
+        <title>Next-SMRT - Todo</title>
+      </Head>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            onClick={handleMenuButtonClick}
+            color="inherit"
+            aria-label="Menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit">
+            Next-SMRT
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Spacer />
+      <Column>
+        <Row>
+          <TextField
+            fullWidth
+            id="todo"
+            label="Add Todo"
+            value={todo}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <Fab
+            size={'small'}
+            onClick={handleClick}
+            color="secondary"
+            aria-label="Add"
+          >
+            <AddIcon />
+          </Fab>
+        </Row>
+      </Column>
+      <Spacer />
+      <Column>
+        {todos.map(item => (
+          <SingleTodo
+            handleDelete={handleDelete}
+            handleCheckBoxTick={handleCheckBoxTick}
+            todo={item}
+            key={item.id}
+          />
+        ))}
+      </Column>
+      <Spacer />
+      <Link href={'/about'}>
+        <a>About</a>
+      </Link>
+    </Wrapper>
+  );
 }
 
 export default connect(
@@ -160,8 +147,7 @@ export default connect(
     todos: store.todo
   }),
   (dispatch: Dispatch) => ({
-    addTodoFlow: (todo: TodoTypes.Todo) =>
-      dispatch(todoActions.addTodoThunk(todo)),
+    addTodoFlow: (todo: TodoTypes.Todo) => dispatch(todoActions.addTodoThunk(todo)),
     toggleComplete: (id: number) => dispatch(todoActions.toggleComplete(id)),
     deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
   })
