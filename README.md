@@ -1,3 +1,4 @@
+![Example To Do App](/static/site-image.png)
 # Next-SMRT
 > Next.js, Styled Components, Material-UI, Redux (With Typesafe-Actions), Typescript
 
