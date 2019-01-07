@@ -7,13 +7,13 @@ Next.js Styled Components, Material-ui, Redux, Typescript
 
 ## Features
 ### Uses
- - next@7
- - react@16
- - redux@4
- - redux-thunk
- - typescript
- - typesafe-actions
- - custom next server using express
+ - [next@7](https://github.com/zeit/next.js)
+ - [react@16](https://github.com/facebook/react)
+ - [redux@4](https://github.com/reduxjs/redux)
+ - [redux-thunk](https://github.com/reduxjs/redux-thunk)
+ - [typescript](https://github.com/Microsoft/TypeScript)
+ - [typesafe-actions](https://github.com/piotrwitek/typesafe-actions)
+ - custom next server using [express](https://github.com/expressjs/express)
  
 
 ### using cdn
@@ -23,7 +23,7 @@ Next.js Styled Components, Material-ui, Redux, Typescript
 ## installation
 
 ```sh
-git clone https://github.com/csprance/next-smrt
+git clone https://github.com/csprance/next-smrt.git
 ```
 
 ## setup
