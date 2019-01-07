@@ -1,5 +1,7 @@
 import Checkbox from '@material-ui/core/Checkbox';
-import Typography from '@material-ui/core/Typography/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
 import * as React from 'react';
 import styled from 'styled-components';
 import { Types as TodoTypes } from '../redux/todo';
@@ -19,31 +21,32 @@ const Spacer = styled.div`
 
 type Props = {
   todo: TodoTypes.Todo;
-  handleCheckBoxTick: any;
+  handleCheckBoxTick: (id: number) => void;
+  handleDelete: (id: number) => void;
 };
-class SingleTodo extends React.Component<Props> {
-  render() {
-    const { todo } = this.props;
-    return (
-      <Wrapper>
-        <Typography
-          variant={'h5'}
-          gutterBottom
-          style={{
-            textDecoration: todo.completed ? 'line-through' : 'none',
-            color: todo.completed ? 'gray' : 'inherit'
-          }}
-        >
-          {todo.todoText}
-        </Typography>
-        <Spacer />
-        <Checkbox
-          checked={todo.completed}
-          onChange={() => this.props.handleCheckBoxTick(todo.id)}
-        />
-      </Wrapper>
-    );
-  }
-}
+const SingleTodo = ({ todo, handleDelete, handleCheckBoxTick }: Props) => (
+  <Wrapper>
+    <Typography
+      variant={'h5'}
+      gutterBottom
+      style={{
+        textDecoration: todo.completed ? 'line-through' : 'none',
+        color: todo.completed ? 'gray' : 'inherit'
+      }}
+    >
+      {todo.todoText}
+    </Typography>
+    <Spacer />
+
+    <IconButton onClick={() => handleDelete(todo.id)}>
+      <DeleteIcon />
+    </IconButton>
+
+    <Checkbox
+      checked={todo.completed}
+      onChange={() => handleCheckBoxTick(todo.id)}
+    />
+  </Wrapper>
+);
 
 export default SingleTodo;

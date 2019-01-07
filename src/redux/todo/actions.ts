@@ -23,7 +23,7 @@ export const addTodoThunk = (
 };
 
 export const removeTodo = createAction(
-  'todo/REMOVE_ACTION',
+  'todo/REMOVE',
   resolve => (id: number) => resolve(id)
 );
 

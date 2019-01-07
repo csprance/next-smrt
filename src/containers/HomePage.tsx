@@ -52,6 +52,7 @@ type Props = {
   todos?: TodoTypes.State;
   addTodoFlow?: (todo: TodoTypes.Todo) => Promise<void>;
   toggleComplete?: (id: number) => void;
+  deleteTodo?: (id: number) => void;
 };
 type State = {
   todo: string;
@@ -68,6 +69,10 @@ class HomePage extends React.Component<Props, State> {
 
   handleCheckBoxTick = id => {
     this.props.toggleComplete(id);
+  };
+
+  handleDelete = id => {
+    this.props.deleteTodo(id);
   };
 
   handleClick = async () => {
@@ -134,6 +139,7 @@ class HomePage extends React.Component<Props, State> {
         <Column>
           {todos.map(item => (
             <SingleTodo
+              handleDelete={this.handleDelete}
               handleCheckBoxTick={this.handleCheckBoxTick}
               todo={item}
               key={item.id}
@@ -156,6 +162,7 @@ export default connect(
   (dispatch: Dispatch) => ({
     addTodoFlow: (todo: TodoTypes.Todo) =>
       dispatch(todoActions.addTodoThunk(todo)),
-    toggleComplete: (id: number) => dispatch(todoActions.toggleComplete(id))
+    toggleComplete: (id: number) => dispatch(todoActions.toggleComplete(id)),
+    deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
   })
 )(HomePage);

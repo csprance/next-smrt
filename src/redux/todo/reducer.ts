@@ -14,7 +14,7 @@ export default (
     case getType(actions.addTodo.failure):
       return state;
     case getType(actions.removeTodo):
-      return state.filter(todo => todo.id === action.payload);
+      return state.filter(todo => todo.id !== action.payload);
     case getType(actions.toggleComplete):
       return state.map(todo => {
         if (todo.id === action.payload) {
