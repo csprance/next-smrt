@@ -17,17 +17,17 @@
  - Custom server testing using [Supertest](https://github.com/visionmedia/supertest)
  
 
-### using cdn
+### Using cdn
  - material-icons font
  - roboto-font
 
-## installation
+## Installation
 
 ```sh
 git clone https://github.com/csprance/next-smrt.git
 ```
 
-## setup
+## Setup
 
 set SEO variables
 
@@ -43,18 +43,18 @@ export const SITE_IMAGE = ''
 
 ---
 
-## env
+## Environment Install Instructions
 
-### development
+### Development
 
-#### installation
+#### Installation
 
 ```
 npm install
 npm run dev # run
 ```
 
-#### test
+#### Test
 
 ```
 npm run test # test
@@ -62,7 +62,7 @@ npm run test:watch
 npm run test:coverage # report coverage
 ```
 
-### production
+### Production
 
 ```
 npm install
@@ -70,7 +70,7 @@ npm run build # create .next directory
 npm start # start server
 ```
 
-or
+or for static export
 
 ```
 npm install
@@ -78,6 +78,15 @@ npm run build # create .next directory
 npm run export # create .out directory
 ```
 
-## license
+# Docker
+> Assumes traefik is running
+* run `docker-compose up -d --build`
+* Visit `http://next-smrt.localhost` 
+
+
+Check out the other docker-compose files for more uses and the `Dockerfile` for the image 
+that will be built to run the app
+ 
+## License
 
 UNLICENSE
