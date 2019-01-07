@@ -48,15 +48,19 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
-const { useState } = React;
 type Props = {
   todos: TodoTypes.State;
   addTodoFlow: (todo: TodoTypes.Todo) => Promise<void>;
   toggleComplete: (id: number) => void;
   deleteTodo: (id: number) => void;
 };
-function HomePage({ todos, addTodoFlow, toggleComplete, deleteTodo }: Props) {
-  const [todo, setTodo] = useState('');
+const HomePage = ({
+  todos,
+  addTodoFlow,
+  toggleComplete,
+  deleteTodo
+}: Props) => {
+  const [todo, setTodo] = React.useState('');
 
   const handleMenuButtonClick = () => {
     notify('Also comes with SweetAlert');
@@ -140,14 +144,15 @@ function HomePage({ todos, addTodoFlow, toggleComplete, deleteTodo }: Props) {
       </Link>
     </Wrapper>
   );
-}
+};
 
 export default connect(
   (store: RootState) => ({
     todos: store.todo
   }),
   (dispatch: Dispatch) => ({
-    addTodoFlow: (todo: TodoTypes.Todo) => dispatch(todoActions.addTodoThunk(todo)),
+    addTodoFlow: (todo: TodoTypes.Todo) =>
+      dispatch(todoActions.addTodoThunk(todo)),
     toggleComplete: (id: number) => dispatch(todoActions.toggleComplete(id)),
     deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
   })
