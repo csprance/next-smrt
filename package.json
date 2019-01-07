@@ -1,6 +1,6 @@
 {
   "name": "next-smrt",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Chris Sprance <chrissprance@gmail.com>",
   "scripts": {
     "dev": "nodemon server/index.ts",
@@ -46,6 +46,7 @@
     "@types/react-redux": "^6.0.11",
     "@types/redux-logger": "^3.0.6",
     "@types/styled-components": "^4.1.4",
+    "@types/supertest": "^2.0.7",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "classnames": "^2.2.6",
@@ -55,6 +56,7 @@
     "nodemon": "^1.18.9",
     "redux-devtools-extension": "^2.13.7",
     "redux-logger": "^3.0.6",
+    "supertest": "^3.3.0",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",

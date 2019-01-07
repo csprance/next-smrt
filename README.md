@@ -12,7 +12,9 @@
  - [redux-thunk](https://github.com/reduxjs/redux-thunk)
  - [typescript](https://github.com/Microsoft/TypeScript)
  - [typesafe-actions](https://github.com/piotrwitek/typesafe-actions)
+ - [Jest](https://github.com/facebook/jest)
  - Custom server for Next.js using [express](https://github.com/expressjs/express)
+ - Custom server testing using [Supertest](https://github.com/visionmedia/supertest)
  
 
 ### using cdn
@@ -79,22 +81,3 @@ npm run export # create .out directory
 ## license
 
 UNLICENSE
-
-## changelog
-### 0.0.7
-
-- Changed some redux boilerplate stuff got rid of uneeded deps
-### 0.0.6
-
-- Updated a bunch of dependencies and adjusted configs to suit.
-### 0.0.3
-
-- Changed to redux 4 next7
-
-### 0.0.2
-
-- Updated deps and added in docker configs
-
-### 0.0.1
-
-- Initial Commit
