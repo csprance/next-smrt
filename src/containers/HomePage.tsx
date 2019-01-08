@@ -48,34 +48,25 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
-type Props = {
-  todos: TodoTypes.State;
-  addTodoFlow: (todo: TodoTypes.Todo) => Promise<void>;
-  toggleComplete: (id: number) => void;
-  deleteTodo: (id: number) => void;
-};
 const HomePage = ({
   todos,
   addTodoFlow,
   toggleComplete,
   deleteTodo
-}: Props) => {
-  const [todo, setTodo] = React.useState('');
+}: {
+  todos: TodoTypes.State;
+  addTodoFlow: (todo: TodoTypes.Todo) => Promise<void>;
+  toggleComplete: (id: number) => void;
+  deleteTodo: (id: number) => void;
+}) => {
+  const [todo, setTodo] = React.useState<string>('');
 
   const handleMenuButtonClick = () => {
     notify('Also comes with SweetAlert');
   };
 
-  const handleCheckBoxTick = id => {
-    toggleComplete(id);
-  };
-
-  const handleDelete = id => {
-    deleteTodo(id);
-  };
-
-  const handleClick = () => {
-    addTodoFlow({
+  const handleClick = async () => {
+    await addTodoFlow({
       todoText: todo,
       id: Date.now(),
       completed: false
@@ -92,6 +83,7 @@ const HomePage = ({
       <Head>
         <title>Next-SMRT - Todo</title>
       </Head>
+
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -106,7 +98,9 @@ const HomePage = ({
           </Typography>
         </Toolbar>
       </AppBar>
+
       <Spacer />
+
       <Column>
         <Row>
           <TextField
@@ -118,6 +112,7 @@ const HomePage = ({
             margin="normal"
           />
           <Fab
+            disabled={todo.trim().length === 0}
             size={'small'}
             onClick={handleClick}
             color="secondary"
@@ -127,18 +122,22 @@ const HomePage = ({
           </Fab>
         </Row>
       </Column>
+
       <Spacer />
+
       <Column>
         {todos.map(item => (
           <SingleTodo
-            handleDelete={handleDelete}
-            handleCheckBoxTick={handleCheckBoxTick}
+            handleDelete={deleteTodo}
+            handleCheckBoxTick={toggleComplete}
             todo={item}
             key={item.id}
           />
         ))}
       </Column>
+
       <Spacer />
+
       <Link href={'/about'}>
         <a>About</a>
       </Link>

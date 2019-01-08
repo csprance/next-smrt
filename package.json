@@ -20,7 +20,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jss": "^9.8.7",
-    "next": "^7.0.2",
+    "next": "^8.0.0-canary.2",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-jss": "^8.6.1",
