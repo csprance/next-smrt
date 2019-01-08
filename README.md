@@ -2,6 +2,10 @@
 # Next-SMRT
 > Next.js, Styled Components, Material-UI, Redux (With Typesafe-Actions), Typescript
 
+A lot of the next.js examples have some of those features but not all together. So I decided to roll them all into one boilerplate.
+
+I use it to kickstart everything I do now. Works great in production!
+
 ## Example TODO List App
 ![Example To Do App](https://csprance.com/shots/2018-08-12_80391bbd-a273-454b-9d85-f45c0bca6d37.png)
 
