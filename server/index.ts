@@ -34,7 +34,11 @@ export default app
   .then(() => {
     // Create the http server and return it like this for jest testing
     const httpServer = http.createServer(server);
-    httpServer.listen(port, () => console.log(`Listening on port http://localhost:${port}`));
+    httpServer.listen(port, () =>
+      console.log(`Listening on port http://localhost:${port}`)
+    );
     return [httpServer, app];
   })
-  .catch(console.error) as Promise<[http.Server, next.Server]>;
+  .catch(err => {
+    throw err;
+  }) as Promise<[http.Server, next.Server]>;

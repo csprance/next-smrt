@@ -59,7 +59,10 @@ const HomePage = ({
   toggleComplete: (id: number) => void;
   deleteTodo: (id: number) => void;
 }) => {
-  const [todo, setTodo] = React.useState<string>('');
+  console.log(React);
+
+  const { useState } = React;
+  const [todo, setTodo] = useState<string>('');
 
   const handleMenuButtonClick = () => {
     notify('Also comes with SweetAlert');
