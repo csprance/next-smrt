@@ -6,6 +6,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { Provider } from 'react-redux';
 import getPageContext from '../src/lib/getPageContext';
 import withReduxStore from '../src/lib/with-redux-store';
+import '../styles/fix-next-link.css'; // FIXME: https://github.com/zeit/next-plugins/issues/282
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 
 class MyApp extends App {
