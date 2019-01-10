@@ -1,0 +1,4 @@
+/*This file is imported and exists purely to fix the next routing issue that arises from using withCSS
+See More here:
+https://github.com/zeit/next-plugins/issues/282
+*/
