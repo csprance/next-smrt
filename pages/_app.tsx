@@ -9,13 +9,8 @@ import withReduxStore from '../src/lib/with-redux-store';
 import '../styles/fix-next-link.css'; // FIXME: https://github.com/zeit/next-plugins/issues/282
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 
-class MyApp extends App {
-  pageContext: any;
-
-  constructor(props) {
-    super(props);
-    this.pageContext = getPageContext();
-  }
+class MyApp extends App{
+  pageContext = getPageContext();
 
   componentDidMount() {
     // Remove the server-side injected CSS.

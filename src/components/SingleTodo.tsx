@@ -24,7 +24,11 @@ type Props = {
   handleCheckBoxTick: (id: number) => void;
   handleDelete: (id: number) => void;
 };
-const SingleTodo = ({ todo, handleDelete, handleCheckBoxTick }: Props) => (
+const SingleTodo: React.FunctionComponent<Props> = ({
+  todo,
+  handleDelete,
+  handleCheckBoxTick
+}) => (
   <Wrapper>
     <Typography
       variant={'h5'}

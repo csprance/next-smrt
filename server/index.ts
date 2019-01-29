@@ -1,5 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
+import * as helmet from 'helmet';
 import * as http from 'http';
 import * as next from 'next';
 
@@ -16,6 +17,7 @@ server.use(
     extended: true
   })
 );
+server.use(helmet());
 
 // TODO: Right here would be a great spot to route an api request off to an internal API that has a key/auth
 // TODO: This is run on the server so take advantage of any special modules here
@@ -34,7 +36,9 @@ export default app
   .then(() => {
     // Create the http server and return it like this for jest testing
     const httpServer = http.createServer(server);
-    httpServer.listen(port, () => console.log(`Listening on port http://localhost:${port}`));
+    httpServer.listen(port, () =>
+      console.log(`Listening on port http://localhost:${port}`)
+    );
     return [httpServer, app];
   })
   .catch(console.error) as Promise<[http.Server, next.Server]>;

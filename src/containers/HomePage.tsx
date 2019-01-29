@@ -17,6 +17,7 @@ import SingleTodo from '../components/SingleTodo';
 import { notify } from '../lib/notify';
 import { Dispatch, RootState } from '../redux/redux-types';
 import { actions as todoActions, Types as TodoTypes } from '../redux/todo';
+import {todoSelector} from '../redux/todo/selectors';
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,17 +50,17 @@ const Spacer = styled.div`
 `;
 
 type Props = {
-  todos?: TodoTypes.State;
-  addTodoFlow?: (todo: TodoTypes.Todo) => Promise<void>;
-  toggleComplete?: (id: number) => void;
-  deleteTodo?: (id: number) => void;
+  todos: TodoTypes.State;
+  addTodo: (todo: TodoTypes.Todo) => void;
+  toggleTodo: (id: number) => void;
+  deleteTodo: (id: number) => void;
 };
 type State = {
   todo: string;
 };
 class HomePage extends React.Component<Props, State> {
   public static defaultProps = {};
-  state = {
+  state: State = {
     todo: ''
   };
 
@@ -67,16 +68,16 @@ class HomePage extends React.Component<Props, State> {
     notify('Also comes with SweetAlert');
   };
 
-  handleCheckBoxTick = id => {
-    this.props.toggleComplete(id);
+  handleCheckBoxTick = (id: number) => {
+    this.props.toggleTodo(id);
   };
 
-  handleDelete = id => {
+  handleDelete = (id: number) => {
     this.props.deleteTodo(id);
   };
 
   handleClick = async () => {
-    this.props.addTodoFlow({
+    this.props.addTodo({
       todoText: this.state.todo,
       id: Date.now(),
       completed: false
@@ -86,7 +87,7 @@ class HomePage extends React.Component<Props, State> {
     });
   };
 
-  handleChange = e => {
+  handleChange = (e: any) => {
     this.setState({
       todo: e.target.value
     });
@@ -157,12 +158,11 @@ class HomePage extends React.Component<Props, State> {
 
 export default connect(
   (store: RootState) => ({
-    todos: store.todo
+    todos: todoSelector(store)
   }),
   (dispatch: Dispatch) => ({
-    addTodoFlow: (todo: TodoTypes.Todo) =>
-      dispatch(todoActions.addTodoThunk(todo)),
-    toggleComplete: (id: number) => dispatch(todoActions.toggleComplete(id)),
-    deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
+    addTodo: (todo: TodoTypes.Todo) => dispatch(todoActions.addTodoThunk(todo)),
+    toggleTodo: (id: number) => dispatch(todoActions.toggleTodoThunk(id)),
+    deleteTodo: (id: number) => dispatch(todoActions.removeTodoThunk(id))
   })
 )(HomePage);

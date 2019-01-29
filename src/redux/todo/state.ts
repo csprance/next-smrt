@@ -1,7 +1,7 @@
 // The Default state for the db
 import { State } from './types';
 
-export default [
+export const defaultState: State = [
   {
     id: 0,
     todoText: 'Clone Next-SMRT Repository',
@@ -32,4 +32,6 @@ export default [
     todoText: 'Hack it in to your own boilerplate',
     completed: false
   }
-] as State;
+];
+
+export default defaultState;

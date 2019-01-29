@@ -9,8 +9,8 @@ const FlexCenter = styled.div`
   flex-direction: column;
 `;
 
-class ErrorPage extends React.Component<{ statusCode: number }> {
-  static getInitialProps({ res, err }) {
+class ErrorPage extends React.Component<any> {
+  static getInitialProps({ res, err }: any) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
     return { statusCode };
   }

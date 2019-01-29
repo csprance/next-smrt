@@ -11,14 +11,16 @@ import {
 } from '../src/constants/env';
 
 class MyDocument extends Document<any> {
-  static async getInitialProps(ctx) {
-    let pageContext;
+  static async getInitialProps(ctx: any) {
+    let pageContext: any;
     const sheet = new ServerStyleSheet();
 
-    const page = ctx.renderPage(App => props => {
-      pageContext = props.pageContext;
-      return sheet.collectStyles(<App {...props} />);
-    });
+    const page = ctx.renderPage(
+      (App: React.FunctionComponent<any>) => (props: any) => {
+        pageContext = props.pageContext;
+        return sheet.collectStyles(<App {...props} />);
+      }
+    );
     const styleTags = sheet.getStyleElement();
 
     let css;

@@ -1,26 +1,31 @@
 import * as React from 'react';
 import { Store } from 'redux';
+
+import { Dispatch, RootAction, RootState } from '../redux/redux-types';
+import { hydrateTodosFromDBThunk } from '../redux/todo/actions';
 import { initializeStore } from '../store';
 
 const isServer = typeof window === 'undefined';
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
 
-function getOrCreateStore(initialState) {
+function getOrCreateStore(initialState: RootState | undefined) {
   // Always make a new store if server, otherwise state is shared between requests
   if (isServer) {
     return initializeStore(initialState);
   }
 
   // Create store if unavailable on the client and set it on the window object
-  if (!window[__NEXT_REDUX_STORE__]) {
-    window[__NEXT_REDUX_STORE__] = initializeStore(initialState);
+  if (!(window as any)[__NEXT_REDUX_STORE__]) {
+    (window as any)[__NEXT_REDUX_STORE__] = initializeStore(initialState);
   }
-  return window[__NEXT_REDUX_STORE__];
+  return (window as any)[__NEXT_REDUX_STORE__];
 }
 
-export default App => {
+export default (App: any) => {
   return class AppWithRedux extends React.Component<{}, {}> {
-    public static async getInitialProps(appContext) {
+    public static async getInitialProps(appContext: any) {
+      // Fetch initial app state for the server side here
+
       // Get or Create the store with `undefined` as initialState
       // This allows you to set a custom default initialState
       const reduxStore = getOrCreateStore(undefined);
@@ -39,12 +44,15 @@ export default App => {
       };
     }
     props: any;
-    reduxStore: Store;
+    reduxStore: Store<RootState, RootAction>;
 
-    constructor(props) {
+    constructor(props: any) {
       super(props);
       this.reduxStore = getOrCreateStore(props.initialReduxState);
-      // Fetch initial client side data here
+    }
+
+    componentDidMount() {
+      (this.reduxStore.dispatch as Dispatch)(hydrateTodosFromDBThunk());
     }
 
     render() {
