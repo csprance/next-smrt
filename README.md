@@ -13,13 +13,14 @@ I use it to kickstart everything I do now. Works great in production!
 ### Uses
  - [next@7](https://github.com/zeit/next.js)
  - [react@16](https://github.com/facebook/react)
+ - [typescript](https://github.com/Microsoft/TypeScript)
  - [redux@4](https://github.com/reduxjs/redux)
  - [redux-thunk](https://github.com/reduxjs/redux-thunk)
- - [typescript](https://github.com/Microsoft/TypeScript)
+ - [redux-persist](https://github.com/rt2zz/redux-persist)
  - [typesafe-actions](https://github.com/piotrwitek/typesafe-actions)
  - [Jest](https://github.com/facebook/jest)
- - Custom server for Next.js using [express](https://github.com/expressjs/express)
- - Custom server testing using [Supertest](https://github.com/visionmedia/supertest)
+ - [express](https://github.com/expressjs/express)
+ - [Supertest](https://github.com/visionmedia/supertest) 
  
 
 ### Using cdn
