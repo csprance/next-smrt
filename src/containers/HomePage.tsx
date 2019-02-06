@@ -17,7 +17,7 @@ import SingleTodo from '../components/SingleTodo';
 import { notify } from '../lib/notify';
 import { Dispatch, RootState } from '../redux/redux-types';
 import { actions as todoActions, Types as TodoTypes } from '../redux/todo';
-import {todoSelector} from '../redux/todo/selectors';
+import { rehydratedSelector, todoSelector } from '../redux/todo/selectors';
 
 const Wrapper = styled.div`
   display: flex;
@@ -54,6 +54,7 @@ type Props = {
   addTodo: (todo: TodoTypes.Todo) => void;
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
+  rehydrated: boolean;
 };
 type State = {
   todo: string;
@@ -138,14 +139,16 @@ class HomePage extends React.Component<Props, State> {
         </Column>
         <Spacer />
         <Column>
-          {todos.map(item => (
-            <SingleTodo
-              handleDelete={this.handleDelete}
-              handleCheckBoxTick={this.handleCheckBoxTick}
-              todo={item}
-              key={item.id}
-            />
-          ))}
+          {this.props.rehydrated
+            ? todos.map(item => (
+                <SingleTodo
+                  handleDelete={this.handleDelete}
+                  handleCheckBoxTick={this.handleCheckBoxTick}
+                  todo={item}
+                  key={item.id}
+                />
+              ))
+            : ' Loading ...'}
         </Column>
         <Spacer />
         <Link href={'/about'}>
@@ -157,12 +160,13 @@ class HomePage extends React.Component<Props, State> {
 }
 
 export default connect(
-  (store: RootState) => ({
-    todos: todoSelector(store)
+  (state: RootState) => ({
+    todos: todoSelector(state),
+    rehydrated: rehydratedSelector(state)
   }),
   (dispatch: Dispatch) => ({
     addTodo: (todo: TodoTypes.Todo) => dispatch(todoActions.addTodoThunk(todo)),
-    toggleTodo: (id: number) => dispatch(todoActions.toggleTodoThunk(id)),
-    deleteTodo: (id: number) => dispatch(todoActions.removeTodoThunk(id))
+    toggleTodo: (id: number) => dispatch(todoActions.toggleComplete(id)),
+    deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
   })
 )(HomePage);

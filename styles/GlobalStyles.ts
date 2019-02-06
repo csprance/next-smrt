@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 import { theme } from './styles';
 
 export const SweetAlertSyle =
-  // tslint:disable-next-line
   createGlobalStyle`
   .next-smrt-theme{
     & .swal-title {

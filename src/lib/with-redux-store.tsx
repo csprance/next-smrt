@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Store } from 'redux';
 
-import { Dispatch, RootAction, RootState } from '../redux/redux-types';
-import { hydrateTodosFromDBThunk } from '../redux/todo/actions';
+import { RootAction, RootState } from '../redux/redux-types';
 import { initializeStore } from '../store';
 
 const isServer = typeof window === 'undefined';
@@ -11,12 +10,15 @@ const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
 function getOrCreateStore(initialState: RootState | undefined) {
   // Always make a new store if server, otherwise state is shared between requests
   if (isServer) {
-    return initializeStore(initialState);
+    return initializeStore(initialState, isServer);
   }
 
   // Create store if unavailable on the client and set it on the window object
   if (!(window as any)[__NEXT_REDUX_STORE__]) {
-    (window as any)[__NEXT_REDUX_STORE__] = initializeStore(initialState);
+    (window as any)[__NEXT_REDUX_STORE__] = initializeStore(
+      initialState,
+      isServer
+    );
   }
   return (window as any)[__NEXT_REDUX_STORE__];
 }
@@ -49,10 +51,6 @@ export default (App: any) => {
     constructor(props: any) {
       super(props);
       this.reduxStore = getOrCreateStore(props.initialReduxState);
-    }
-
-    componentDidMount() {
-      (this.reduxStore.dispatch as Dispatch)(hydrateTodosFromDBThunk());
     }
 
     render() {

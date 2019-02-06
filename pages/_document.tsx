@@ -97,8 +97,8 @@ class MyDocument extends Document<any> {
           {this.props.styleTags}
         </Head>
         <body>
-          <Main />
           <NextScript />
+          <Main />
         </body>
       </html>
     );
