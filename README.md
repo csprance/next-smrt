@@ -11,7 +11,7 @@ I use it to kickstart everything I do now. Works great in production!
 
 ## Features
 ### Uses
- - [next@7](https://github.com/zeit/next.js)
+ - [next@8](https://github.com/zeit/next.js)
  - [react@16](https://github.com/facebook/react)
  - [typescript](https://github.com/Microsoft/TypeScript)
  - [redux@4](https://github.com/reduxjs/redux)
