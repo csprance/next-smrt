@@ -1,7 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import * as React from 'react';
 import { ServerStyleSheet } from 'styled-components';
-import flush from 'styled-jsx/server';
+
 import {
   SITE_AUTHOR,
   SITE_DESCRIPTION,
@@ -12,44 +12,32 @@ import {
 
 class MyDocument extends Document<any> {
   static async getInitialProps(ctx: any) {
-    let pageContext: any;
     const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
 
-    const page = ctx.renderPage(
-      (App: React.FunctionComponent<any>) => (props: any) => {
-        pageContext = props.pageContext;
-        return sheet.collectStyles(<App {...props} />);
-      }
-    );
-    const styleTags = sheet.getStyleElement();
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App: React.FunctionComponent<any>) => (props: any) =>
+            sheet.collectStyles(<App {...props} />)
+        });
 
-    let css;
-    // It might be undefined, e.g. after an error.
-    if (pageContext) {
-      css = pageContext.sheetsRegistry.toString();
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        )
+      };
+    } finally {
+      sheet.seal();
     }
-
-    return {
-      ...page,
-      pageContext,
-      // Styles fragment is rendered after the app and page rendering finish.
-      styles: (
-        <React.Fragment>
-          <style
-            id="jss-server-side"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: css }}
-          />
-          {flush() || null}
-        </React.Fragment>
-      ),
-      styleTags
-    };
   }
 
   render() {
-    const { pageContext } = this.props;
-
     return (
       <html lang="en" dir="ltr">
         <Head>
@@ -71,10 +59,6 @@ class MyDocument extends Document<any> {
             }
           />
           {/* PWA primary color */}
-          <meta
-            name="theme-color"
-            content={pageContext.theme.palette.primary.main}
-          />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content={SITE_NAME} />
           <meta property="og:title" content={SITE_TITLE} />
@@ -94,7 +78,6 @@ class MyDocument extends Document<any> {
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
           <link rel="stylesheet" href="/static/styles/main.css" />
-          {this.props.styleTags}
         </Head>
         <body>
           <NextScript />

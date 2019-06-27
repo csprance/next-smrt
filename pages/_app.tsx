@@ -1,23 +1,30 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import App, { Container } from 'next/app';
 import * as React from 'react';
-import JssProvider from 'react-jss/lib/JssProvider';
 import { Provider } from 'react-redux';
 
-import getPageContext from '../src/lib/getPageContext';
 import withReduxStore from '../src/lib/with-redux-store';
 import '../styles/fix-next-link.css'; // FIXME: https://github.com/zeit/next-plugins/issues/282
 import { SweetAlertSyle } from '../styles/GlobalStyles';
+import { theme } from '../styles/styles';
 
 class MyApp extends App {
-  pageContext = getPageContext();
+  static async getInitialProps({ Component, ctx }: any) {
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    return { pageProps };
+  }
 
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
+    if (jssStyles) {
+      jssStyles.parentNode!.removeChild(jssStyles);
     }
   }
 
@@ -27,26 +34,14 @@ class MyApp extends App {
     return (
       <Container>
         <Provider store={reduxStore}>
-          {/* Wrap every page in Jss and Theme providers */}
-          <JssProvider
-            registry={this.pageContext.sheetsRegistry}
-            generateClassName={this.pageContext.generateClassName}
-          >
-            {/* MuiThemeProvider makes the theme available down the React
-              tree thanks to React context. */}
-            <MuiThemeProvider
-              theme={this.pageContext.theme}
-              sheetsManager={this.pageContext.sheetsManager}
-            >
-              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-              <CssBaseline />
-              {/*Optional Sweet Alert Styles*/}
-              <SweetAlertSyle />
-              {/* Pass pageContext to the _document though the renderPage enhancer
-                to render collected styles on server side. */}
-              <Component pageContext={this.pageContext} {...pageProps} />
-            </MuiThemeProvider>
-          </JssProvider>
+          {/* Material-UI Theme Provider */}
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            {/*Optional Sweet Alert Styles */}
+            <SweetAlertSyle />
+            <Component {...pageProps} />
+          </ThemeProvider>
         </Provider>
       </Container>
     );

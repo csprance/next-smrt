@@ -1,4 +1,7 @@
 # Change Log
+#### 0.0.13
+- Updated deps
+
 #### 0.0.9
 - Updated Deps
 - Updated some types
