@@ -7,7 +7,6 @@ import styled from 'styled-components';
 
 import { media } from '../../styles/styles';
 import SingleTodo from '../components/SingleTodo';
-import { notify } from '../lib/notify';
 import { Dispatch, RootState } from '../redux/redux-types';
 import { actions as todoActions, Types as TodoTypes } from '../redux/todo';
 import { rehydratedSelector, todoSelector } from '../redux/todo/selectors';
@@ -55,19 +54,8 @@ const HomePageContainer: React.FunctionComponent<Props> = ({
   const [state, setState] = React.useState<State>({
     todo: ''
   });
-
-  const handleMenuButtonClick = () => {
-    notify('Also comes with SweetAlert');
-  };
-
-  const handleCheckBoxTick = (id: number) => {
-    toggleTodo(id);
-  };
-
-  const handleDelete = (id: number) => {
-    deleteTodo(id);
-  };
-
+  const handleCheckBoxTick = (id: number) => toggleTodo(id);
+  const handleDelete = (id: number) => deleteTodo(id);
   const handleClick = async () => {
     addTodo({
       todoText: state.todo,
@@ -78,14 +66,13 @@ const HomePageContainer: React.FunctionComponent<Props> = ({
       todo: ''
     });
   };
-
   const handleChange = (e: any) => {
     setState({
       todo: e.target.value
     });
   };
-
   const { todo } = state;
+
   return (
     <>
       <Column>
@@ -99,6 +86,7 @@ const HomePageContainer: React.FunctionComponent<Props> = ({
             margin="normal"
           />
           <Fab
+            href={'#'}
             size={'small'}
             onClick={handleClick}
             color="secondary"

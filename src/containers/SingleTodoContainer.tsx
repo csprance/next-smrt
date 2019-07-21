@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import SingleTodo from '../components/SingleTodo';
 import { Dispatch, RootState } from '../redux/redux-types';
+import { actions as todoActions } from '../redux/todo';
 import { todoByIdSelector } from '../redux/todo/selectors';
 import { Todo } from '../redux/todo/types';
 
@@ -11,20 +12,21 @@ interface Props {
 }
 interface ReduxProps {
   todo: Todo | undefined;
+  toggleTodo: (id: number) => void;
+  deleteTodo: (id: number) => void;
 }
 const SingleTodoContainer: React.FunctionComponent<Props & ReduxProps> = ({
-  todo
+  todo,
+  toggleTodo,
+  deleteTodo
 }) => {
-  const handleCheckBoxTick = () => {
-    return false;
-  };
-  const handleDelete = () => {
-    return false;
-  };
-  if (!todo) {
-    return <div>Todo Not Found</div>;
-  }
-  return (
+  const { id } = todo;
+  const handleCheckBoxTick = () => toggleTodo(id);
+  const handleDelete = () => deleteTodo(id);
+
+  return !todo ? (
+    <div>Todo Not Found</div>
+  ) : (
     <SingleTodo
       todo={todo}
       handleCheckBoxTick={handleCheckBoxTick}
@@ -33,10 +35,12 @@ const SingleTodoContainer: React.FunctionComponent<Props & ReduxProps> = ({
   );
 };
 
-const mapStateToProps = (state: RootState, props: Props) => ({
-  todo: todoByIdSelector(state, props)
-});
-const mapDispatchToProps = (_dispatch: Dispatch) => ({});
-export default connect(mapStateToProps, mapDispatchToProps)(
-  SingleTodoContainer
-);
+export default connect(
+  (state: RootState, props: Props) => ({
+    todo: todoByIdSelector(state, props)
+  }),
+  (dispatch: Dispatch) => ({
+    toggleTodo: (id: number) => dispatch(todoActions.toggleComplete(id)),
+    deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
+  })
+)(SingleTodoContainer);

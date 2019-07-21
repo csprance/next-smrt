@@ -38,6 +38,7 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            href={'#'}
             onClick={handleMenuButtonClick}
             color="inherit"
             aria-label="Menu"

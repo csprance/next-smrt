@@ -5,7 +5,6 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 
 import withReduxStore from '../src/lib/with-redux-store';
-import '../styles/fix-next-link.css'; // FIXME: https://github.com/zeit/next-plugins/issues/282
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 

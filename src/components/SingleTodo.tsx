@@ -45,7 +45,7 @@ const SingleTodo: React.FunctionComponent<Props> = ({
     </Typography>
     <Spacer />
 
-    <IconButton onClick={() => handleDelete(todo.id)}>
+    <IconButton href={'#'} onClick={() => handleDelete(todo.id)}>
       <DeleteIcon />
     </IconButton>
 
