@@ -1,17 +1,17 @@
-import { NextFunctionComponent } from 'next';
+import { NextPage } from 'next';
 import Head from 'next/head';
 import * as React from 'react';
 
 type Props = {
   gipData: string;
 };
-export const AboutPage: NextFunctionComponent<Props> = ({ gipData }) => {
+export const AboutPage: NextPage<Props> = ({ gipData }) => {
   return (
     <div>
       <Head>
         <title>Next-SMRT About</title>
       </Head>
-      Here could be a cool about page - {gipData}
+      Here could be a cool about page - {gipData}r
     </div>
   );
 };

@@ -1,4 +1,8 @@
 # Change Log
+#### 0.1.0
+- Updated deps and massively thinned down required deps.
+- Next 9 awww ya. Built in everything now. Typescript, Customer Server, API, Dynamic Routing
+
 #### 0.0.13
 - Updated deps
 

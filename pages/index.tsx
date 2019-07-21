@@ -1,4 +1,4 @@
-import { NextContext } from 'next';
+import { NextPageContext } from 'next';
 import * as React from 'react';
 
 import HomePage from '../src/containers/HomePage';
@@ -7,7 +7,7 @@ type Props = {
   gipData: string;
 };
 export class IndexPage extends React.Component<Props> {
-  static async getInitialProps({  }: NextContext) {
+  static async getInitialProps({  }: NextPageContext) {
     return {
       gipData: 'Data from getInitialProps of IndexPage'
     };
