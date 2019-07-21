@@ -30,6 +30,7 @@ I use it to kickstart everything I do now. Works great in production!
 ```sh
 git clone https://github.com/csprance/next-smrt.git
 ```
+or just click the `Use This Template` button above.
 
 ## Setup
 
