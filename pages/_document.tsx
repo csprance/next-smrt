@@ -10,8 +10,8 @@ import {
   SITE_TITLE
 } from '../src/constants/env';
 
-class MyDocument extends Document<any> {
-  static async getInitialProps(ctx: any) {
+class MyDocument extends Document {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 

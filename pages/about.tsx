@@ -2,17 +2,19 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import * as React from 'react';
 
+import Layout from '../src/components/Layout';
+
 type Props = {
   gipData: string;
 };
 export const AboutPage: NextPage<Props> = ({ gipData }) => {
   return (
-    <div>
+    <Layout>
       <Head>
         <title>Next-SMRT About</title>
       </Head>
-      Here could be a cool about page - {gipData}r
-    </div>
+      Here could be a cool about page - {gipData}
+    </Layout>
   );
 };
 AboutPage.getInitialProps = async ({ req, res }) => {
@@ -20,7 +22,7 @@ AboutPage.getInitialProps = async ({ req, res }) => {
     console.log('Runs only on server');
   }
   if (!req && !res) {
-    console.log('on The server once and the client one each visit');
+    console.log('Runs on the server once and the client once each visit');
   }
 
   return {

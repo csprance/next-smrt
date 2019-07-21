@@ -3,6 +3,9 @@ import { useRouter } from 'next/router'
 import * as React from 'react';
 import styled from 'styled-components';
 
+import Layout from '../../src/components/Layout';
+import SingleTodoContainer from '../../src/containers/SingleTodoContainer';
+
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
@@ -15,9 +18,9 @@ const TodoIDPage: NextPage<Props> = ({}) => {
   const { id } = router.query;
 
   return (
-   <Wrapper>
-     {id}
-   </Wrapper>
+    <Layout>
+      <SingleTodoContainer id={Number(id)} />
+    </Layout>
   );
 };
 

@@ -1,13 +1,6 @@
-import AppBar from '@material-ui/core/AppBar';
 import Fab from '@material-ui/core/Fab';
-import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
-import MenuIcon from '@material-ui/icons/Menu';
-import Head from 'next/head';
-import Link from 'next/link';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -19,13 +12,6 @@ import { Dispatch, RootState } from '../redux/redux-types';
 import { actions as todoActions, Types as TodoTypes } from '../redux/todo';
 import { rehydratedSelector, todoSelector } from '../redux/todo/selectors';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  margin-bottom: 35px;
-  flex-direction: column;
-`;
 const Column = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,7 +45,7 @@ type Props = {
 type State = {
   todo: string;
 };
-const HomePage: React.FunctionComponent<Props> = ({
+const HomePageContainer: React.FunctionComponent<Props> = ({
   todos,
   addTodo,
   toggleTodo,
@@ -101,25 +87,7 @@ const HomePage: React.FunctionComponent<Props> = ({
 
   const { todo } = state;
   return (
-    <Wrapper>
-      <Head>
-        <title>Next-SMRT - Todo</title>
-      </Head>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            onClick={handleMenuButtonClick}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit">
-            Next-SMRT
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Spacer />
+    <>
       <Column>
         <Row>
           <TextField
@@ -153,11 +121,7 @@ const HomePage: React.FunctionComponent<Props> = ({
             ))
           : ' Loading ...'}
       </Column>
-      <Spacer />
-      <Link href={'/about'}>
-        <a>About</a>
-      </Link>
-    </Wrapper>
+    </>
   );
 };
 
@@ -171,4 +135,4 @@ export default connect(
     toggleTodo: (id: number) => dispatch(todoActions.toggleComplete(id)),
     deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
   })
-)(HomePage);
+)(HomePageContainer);

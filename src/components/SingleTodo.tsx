@@ -2,6 +2,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Link from 'next/link';
 import * as React from 'react';
 import styled from 'styled-components';
 import { Types as TodoTypes } from '../redux/todo';
@@ -38,7 +39,9 @@ const SingleTodo: React.FunctionComponent<Props> = ({
         color: todo.completed ? 'gray' : 'inherit'
       }}
     >
-      {todo.todoText}
+      <Link href={`/todo/[id]`} as={`/todo/${todo.id}`}>
+        {todo.todoText}
+      </Link>
     </Typography>
     <Spacer />
 

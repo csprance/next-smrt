@@ -1,7 +1,8 @@
 import { NextPageContext } from 'next';
 import * as React from 'react';
 
-import HomePage from '../src/containers/HomePage';
+import Layout from '../src/components/Layout';
+import HomePageContainer from '../src/containers/HomePageContainer';
 
 type Props = {
   gipData: string;
@@ -18,7 +19,12 @@ export class IndexPage extends React.Component<Props> {
   }
 
   render() {
-    return <HomePage />;
+    return (
+      <Layout>
+        <HomePageContainer />
+      </Layout>
+    );
   }
 }
+
 export default IndexPage;

@@ -1,3 +1,4 @@
+import NextApp from 'next/app';
 import * as React from 'react';
 import { Store } from 'redux';
 
@@ -23,7 +24,7 @@ function getOrCreateStore(initialState: RootState | undefined) {
   return (window as any)[__NEXT_REDUX_STORE__];
 }
 
-export default (App: any) => {
+export default (App: typeof NextApp) => {
   return class AppWithRedux extends React.Component<{}, {}> {
     public static async getInitialProps(appContext: any) {
       // Fetch initial app state for the server side here

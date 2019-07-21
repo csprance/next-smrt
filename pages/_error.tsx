@@ -2,6 +2,8 @@ import Head from 'next/head';
 import * as React from 'react';
 import styled from 'styled-components';
 
+import Layout from '../src/components/Layout';
+
 const FlexCenter = styled.div`
   display: flex;
   align-items: center;
@@ -18,12 +20,14 @@ class ErrorPage extends React.Component<any> {
   render() {
     const { statusCode } = this.props;
     return (
-      <FlexCenter>
-        <Head>
-          <title>Error</title>
-        </Head>
-        <h1>{statusCode}</h1>
-      </FlexCenter>
+      <Layout>
+        <FlexCenter>
+          <Head>
+            <title>Error</title>
+          </Head>
+          <h1>{statusCode}</h1>
+        </FlexCenter>
+      </Layout>
     );
   }
 }
