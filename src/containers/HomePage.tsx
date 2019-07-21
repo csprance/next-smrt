@@ -59,105 +59,107 @@ type Props = {
 type State = {
   todo: string;
 };
-class HomePage extends React.Component<Props, State> {
-  public static defaultProps = {};
-  state: State = {
+const HomePage: React.FunctionComponent<Props> = ({
+  todos,
+  addTodo,
+  toggleTodo,
+  deleteTodo,
+  rehydrated
+}) => {
+  const [state, setState] = React.useState<State>({
     todo: ''
-  };
+  });
 
-  handleMenuButtonClick = () => {
+  const handleMenuButtonClick = () => {
     notify('Also comes with SweetAlert');
   };
 
-  handleCheckBoxTick = (id: number) => {
-    this.props.toggleTodo(id);
+  const handleCheckBoxTick = (id: number) => {
+    toggleTodo(id);
   };
 
-  handleDelete = (id: number) => {
-    this.props.deleteTodo(id);
+  const handleDelete = (id: number) => {
+    deleteTodo(id);
   };
 
-  handleClick = async () => {
-    this.props.addTodo({
-      todoText: this.state.todo,
+  const handleClick = async () => {
+    addTodo({
+      todoText: state.todo,
       id: Date.now(),
       completed: false
     });
-    this.setState({
+    setState({
       todo: ''
     });
   };
 
-  handleChange = (e: any) => {
-    this.setState({
+  const handleChange = (e: any) => {
+    setState({
       todo: e.target.value
     });
   };
 
-  render() {
-    const { todos } = this.props;
-    const { todo } = this.state;
-    return (
-      <Wrapper>
-        <Head>
-          <title>Next-SMRT - Todo</title>
-        </Head>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              onClick={this.handleMenuButtonClick}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit">
-              Next-SMRT
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Spacer />
-        <Column>
-          <Row>
-            <TextField
-              fullWidth
-              id="todo"
-              label="Add Todo"
-              value={todo}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <Fab
-              size={'small'}
-              onClick={this.handleClick}
-              color="secondary"
-              aria-label="Add"
-            >
-              <AddIcon />
-            </Fab>
-          </Row>
-        </Column>
-        <Spacer />
-        <Column>
-          {this.props.rehydrated
-            ? todos.map(item => (
-                <SingleTodo
-                  handleDelete={this.handleDelete}
-                  handleCheckBoxTick={this.handleCheckBoxTick}
-                  todo={item}
-                  key={item.id}
-                />
-              ))
-            : ' Loading ...'}
-        </Column>
-        <Spacer />
-        <Link href={'/about'}>
-          <a>About</a>
-        </Link>
-      </Wrapper>
-    );
-  }
-}
+  const { todo } = state;
+  return (
+    <Wrapper>
+      <Head>
+        <title>Next-SMRT - Todo</title>
+      </Head>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            onClick={handleMenuButtonClick}
+            color="inherit"
+            aria-label="Menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit">
+            Next-SMRT
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Spacer />
+      <Column>
+        <Row>
+          <TextField
+            fullWidth
+            id="todo"
+            label="Add Todo"
+            value={todo}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <Fab
+            size={'small'}
+            onClick={handleClick}
+            color="secondary"
+            aria-label="Add"
+          >
+            <AddIcon />
+          </Fab>
+        </Row>
+      </Column>
+      <Spacer />
+      <Column>
+        {rehydrated
+          ? todos.map(item => (
+              <SingleTodo
+                handleDelete={handleDelete}
+                handleCheckBoxTick={handleCheckBoxTick}
+                todo={item}
+                key={item.id}
+              />
+            ))
+          : ' Loading ...'}
+      </Column>
+      <Spacer />
+      <Link href={'/about'}>
+        <a>About</a>
+      </Link>
+    </Wrapper>
+  );
+};
 
 export default connect(
   (state: RootState) => ({
