@@ -20,14 +20,16 @@ const SingleTodoContainer: React.FunctionComponent<Props & ReduxProps> = ({
   toggleTodo,
   deleteTodo
 }) => {
+  if (!todo) {
+    return <div>Todo Not Found</div>;
+  }
   const { id } = todo;
   const handleCheckBoxTick = () => toggleTodo(id);
   const handleDelete = () => deleteTodo(id);
 
-  return !todo ? (
-    <div>Todo Not Found</div>
-  ) : (
+  return (
     <SingleTodo
+      key={id}
       todo={todo}
       handleCheckBoxTick={handleCheckBoxTick}
       handleDelete={handleDelete}

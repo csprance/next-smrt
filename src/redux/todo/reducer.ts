@@ -24,7 +24,7 @@ export default (
         if (todo.id === action.payload) {
           todo.completed = !todo.completed;
         }
-        return todo;
+        return {...todo};
       });
 
     default:

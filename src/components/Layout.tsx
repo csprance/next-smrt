@@ -47,17 +47,21 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
           </IconButton>
           <Typography variant="h6" color="inherit">
             <div style={{ paddingLeft: 20 }}>
-              <Link href={'/'}><a>Next-SMRT</a></Link>
+              <Link href={'/'}>
+                <a>Next-SMRT</a>
+              </Link>
             </div>
           </Typography>
           <div style={{ flexGrow: 1 }} />
 
           <Link href={'/about'}>
-            <Tooltip title={'About'}>
-              <IconButton href={'#'} color="inherit" aria-label="Menu">
-                <AboutIcon />
-              </IconButton>
-            </Tooltip>
+            <a>
+              <Tooltip title={'About'}>
+                <IconButton href={''} color="inherit" aria-label="Menu">
+                  <AboutIcon />
+                </IconButton>
+              </Tooltip>
+            </a>
           </Link>
 
           <Tooltip title={'GitHub Repository'}>

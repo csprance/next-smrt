@@ -1,6 +1,7 @@
+import { ServerStyleSheets } from '@material-ui/styles';
 import Document, { Head, Main, NextScript } from 'next/document';
 import * as React from 'react';
-import { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheet as SCServerStyleSheet } from 'styled-components';
 
 import {
   SITE_AUTHOR,
@@ -11,32 +12,6 @@ import {
 } from '../src/constants/env';
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const sheet = new ServerStyleSheet();
-    const originalRenderPage = ctx.renderPage;
-
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App: React.FunctionComponent<any>) => (props: any) =>
-            sheet.collectStyles(<App {...props} />)
-        });
-
-      const initialProps = await Document.getInitialProps(ctx);
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        )
-      };
-    } finally {
-      sheet.seal();
-    }
-  }
-
   render() {
     return (
       <html lang="en" dir="ltr">
@@ -80,12 +55,40 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="/static/styles/main.css" />
         </Head>
         <body>
-          <NextScript />
           <Main />
+          <NextScript />
         </body>
       </html>
     );
   }
 }
+
+MyDocument.getInitialProps = async ctx => {
+  // Set up our styled-components and material-ui style sheets here
+  // Render app and page and get the context of the page with collected side effects.
+  const muiSheets = new ServerStyleSheets();
+  const scSheet = new SCServerStyleSheet();
+  const originalRenderPage = ctx.renderPage;
+
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: App => props =>
+        scSheet.collectStyles(muiSheets.collect(<App {...props} />))
+    });
+
+  const initialProps = await Document.getInitialProps(ctx);
+
+  return {
+    ...initialProps,
+    // Styles fragment is rendered after the app and page rendering finish.
+    styles: [
+      <React.Fragment key="styles">
+        {initialProps.styles}
+        {muiSheets.getStyleElement()}
+        {scSheet.getStyleElement()}
+      </React.Fragment>
+    ]
+  };
+};
 
 export default MyDocument;

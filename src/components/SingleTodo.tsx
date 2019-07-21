@@ -29,31 +29,33 @@ const SingleTodo: React.FunctionComponent<Props> = ({
   todo,
   handleDelete,
   handleCheckBoxTick
-}) => (
-  <Wrapper>
-    <Typography
-      variant={'h5'}
-      gutterBottom
-      style={{
-        textDecoration: todo.completed ? 'line-through' : 'none',
-        color: todo.completed ? 'gray' : 'inherit'
-      }}
-    >
-      <Link href={`/todo/[id]`} as={`/todo/${todo.id}`}>
-        {todo.todoText}
-      </Link>
-    </Typography>
-    <Spacer />
+}) => {
+  const handleDeleteClick = () => handleDelete(todo.id);
+  const handleCheckBoxClick = () => handleCheckBoxTick(todo.id);
 
-    <IconButton href={'#'} onClick={() => handleDelete(todo.id)}>
-      <DeleteIcon />
-    </IconButton>
+  return (
+    <Wrapper>
+      <Typography
+        variant={'h5'}
+        gutterBottom
+        style={{
+          textDecoration: todo.completed ? 'line-through' : 'none',
+          color: todo.completed ? 'gray' : 'inherit'
+        }}
+      >
+        <Link href={`/todo/[id]`} as={`/todo/${todo.id}`}>
+          <a>{todo.todoText}</a>
+        </Link>
+      </Typography>
+      <Spacer />
 
-    <Checkbox
-      checked={todo.completed}
-      onChange={() => handleCheckBoxTick(todo.id)}
-    />
-  </Wrapper>
-);
+      <IconButton href={'#'} onClick={handleDeleteClick}>
+        <DeleteIcon />
+      </IconButton>
+
+      <Checkbox checked={todo.completed} onChange={handleCheckBoxClick} />
+    </Wrapper>
+  );
+};
 
 export default SingleTodo;
