@@ -1,16 +1,10 @@
-import {NextPage} from 'next';
+import Box from '@material-ui/core/Box';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router'
 import * as React from 'react';
-import styled from 'styled-components';
 
 import Layout from '../../src/components/Layout';
 import SingleTodoContainer from '../../src/containers/SingleTodoContainer';
-
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-`;
 
 interface Props {}
 const TodoIDPage: NextPage<Props> = ({}) => {
@@ -19,7 +13,9 @@ const TodoIDPage: NextPage<Props> = ({}) => {
 
   return (
     <Layout>
-      <SingleTodoContainer id={Number(id)} />
+      <Box width={'100%'} flexGrow={1} display={'flex'} alignItems={'center'} justifyContent={'center'}>
+        <SingleTodoContainer id={Number(id)} />
+      </Box>
     </Layout>
   );
 };

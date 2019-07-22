@@ -1,3 +1,4 @@
+import Box from '@material-ui/core/Box';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import * as React from 'react';
@@ -13,7 +14,40 @@ export const AboutPage: NextPage<Props> = ({ gipData }) => {
       <Head>
         <title>Next-SMRT About</title>
       </Head>
-      Here could be a cool about page - {gipData}
+      <Box
+        width={'100%'}
+        flexGrow={1}
+        flexDirection={'column'}
+        display={'flex'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        style={{ padding: 10, textAlign: 'center' }}
+      >
+        <img
+          style={{ maxWidth: '100%' }}
+          src="/static/site-image.png"
+          alt="next-smrt-logo"
+        />
+        <h1>Next-SMRT</h1>
+        <h2>
+          Next.js, Styled Components, Material-UI, Redux (With
+          Typesafe-Actions), Typescript
+        </h2>
+
+        <p>
+          A lot of the next.js examples have some of those features but not all
+          together. So I decided to roll them all into one boilerplate.
+        </p>
+
+        <p>
+          I use it to kickstart everything I do now. Works great in production
+          and comes with docker batteries included.
+        </p>
+
+        <p>
+          Made with 💗 by <a href="https://csprance.com">@csprance</a>
+        </p>
+      </Box>
     </Layout>
   );
 };

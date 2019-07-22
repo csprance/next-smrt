@@ -6,7 +6,11 @@ export default function handle(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { id }
   } = req;
-  res.setHeader('Content-Type', 'application/json');
-  res.statusCode = 200;
-  res.end(JSON.stringify({ name: 'Nextjs', id }));
+  if (req.method === 'GET'){
+    res.setHeader('Content-Type', 'application/json');
+    res.statusCode = 200;
+    res.end(JSON.stringify({ name: 'Nextjs', id }));
+  }
+  res.statusCode = 404;
+  res.end('Error');
 }

@@ -12,8 +12,10 @@ import { theme } from '../styles/styles';
 class MyApp extends App {
   // This is for redux
   static async getInitialProps({ Component, ctx }) {
-    // we can dispatch from here too
-    // ctx.store.dispatch({ type: 'FOO', payload: 'foo' });
+    if (ctx.isServer) {
+      // Runs once per connection only on the server. Good place to get initial state for the site
+      // ctx.store.dispatch({ type: 'FOO', payload: 'foo' });
+    }
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
