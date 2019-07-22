@@ -1,29 +1,32 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
+import withRedux from 'next-redux-wrapper';
 import App, { Container } from 'next/app';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 
-import withReduxStore from '../src/lib/with-redux-store';
+import { initializeStore } from '../src/store';
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
 class MyApp extends App {
   // This is for redux
-  static async getInitialProps({ Component, router, ctx }) {
-    let pageProps = {};
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
+  static async getInitialProps({ Component, ctx }) {
+    // we can dispatch from here too
+    // ctx.store.dispatch({ type: 'FOO', payload: 'foo' });
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
+
     return { pageProps };
   }
 
   render() {
     const { props } = this as any;
-    const { Component, pageProps, reduxStore } = props;
+    const { Component, pageProps, store } = props;
     return (
       <Container>
-        <Provider store={reduxStore}>
+        <Provider store={store}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <SweetAlertSyle />
@@ -35,4 +38,4 @@ class MyApp extends App {
   }
 }
 
-export default withReduxStore(MyApp);
+export default withRedux(initializeStore)(MyApp);

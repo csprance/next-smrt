@@ -8,14 +8,15 @@ import { RootAction, RootState } from './redux/redux-types';
 
 export const initializeStore = (
   initialState: RootState | undefined = undefined,
-  isServer: boolean
+  options
 ) => {
   // Add any middlewares here
   const middlewares = [thunk as ThunkMiddleware<RootState, RootAction>];
+
   // Add any dev only middlewares here
   const devMiddlewares = [createLogger()];
 
-  if (isServer) {
+  if (options.isServer) {
     return createStore(
       rootReducer,
       initialState,
