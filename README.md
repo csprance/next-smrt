@@ -7,7 +7,7 @@ A lot of the next.js examples have some of those features but not all together. 
 I use it to kickstart everything I do now. Works great in production and comes with docker batteries included.
 
 ## Example TODO List App
-![Example To Do App](https://csprance.com/shots/2018-08-12_80391bbd-a273-454b-9d85-f45c0bca6d37.png)
+![Example To Do App](https://csprance.com/shots/2019-07-21_642df2a7-ae0d-4f07-80b5-b05c7cbd0555.png)
 
 ## Features
 ### Uses
@@ -75,16 +75,8 @@ npm run build # create .next directory
 npm start # start server
 ```
 
-or for static export
-
-```
-npm install
-npm run build # create .next directory
-npm run export # create .out directory
-```
-
 # Docker
-> Assumes [traefik](traefik.io) is running
+> Assumes [traefik](https://traefik.io) is running
 * run `docker-compose up -d --build`
 * Visit `http://next-smrt.localhost` 
 
