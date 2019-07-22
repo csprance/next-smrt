@@ -84,7 +84,7 @@ npm run export # create .out directory
 ```
 
 # Docker
-> Assumes traefik is running
+> Assumes [traefik](traefik.io) is running
 * run `docker-compose up -d --build`
 * Visit `http://next-smrt.localhost` 
 

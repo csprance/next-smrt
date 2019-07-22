@@ -1,4 +1,5 @@
 import Box from '@material-ui/core/Box';
+import axios from 'axios';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import * as React from 'react';
@@ -44,6 +45,8 @@ export const AboutPage: NextPage<Props> = ({ gipData }) => {
           and comes with docker batteries included.
         </p>
 
+        <p>Random Chuck Joke: {gipData}</p>
+
         <p>
           Made with 💗 by <a href="https://csprance.com">@csprance</a>
         </p>
@@ -58,9 +61,11 @@ AboutPage.getInitialProps = async ({ req, res }) => {
   if (!req && !res) {
     console.log('Runs on the server once and the client once each visit');
   }
-
+  // The data will fetch either on the client or the server server
+  // on first page visit or reload and client when using links
+  const { data } = await axios.get('https://api.chucknorris.io/jokes/random');
   return {
-    gipData: 'With Data from getInitialProps'
+    gipData: data.value
   };
 };
 export default AboutPage;
