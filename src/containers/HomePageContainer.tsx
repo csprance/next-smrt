@@ -2,12 +2,11 @@ import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/Add';
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { media } from '../../styles/styles';
 import SingleTodo from '../components/SingleTodo';
-import { Dispatch, RootState } from '../redux/redux-types';
 import { actions as todoActions, Types as TodoTypes } from '../redux/todo';
 import { rehydratedSelector, todoSelector } from '../redux/todo/selectors';
 
@@ -34,23 +33,17 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
-type Props = {
-  todos: TodoTypes.State;
-  addTodo: (todo: TodoTypes.Todo) => void;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-  rehydrated: boolean;
-};
+type Props = {};
 type State = {
   todo: string;
 };
-const HomePageContainer: React.FunctionComponent<Props> = ({
-  todos,
-  addTodo,
-  toggleTodo,
-  deleteTodo,
-  rehydrated
-}) => {
+const HomePageContainer: React.FunctionComponent<Props> = ({}) => {
+  const dispatch = useDispatch();
+  const todos = useSelector(todoSelector);
+  const rehydrated = useSelector(rehydratedSelector);
+  const addTodo = (_todo: TodoTypes.Todo) => dispatch(todoActions.addTodoThunk(_todo));
+  const toggleTodo = (id: number) => dispatch(todoActions.toggleComplete(id));
+  const deleteTodo = (id: number) => dispatch(todoActions.removeTodo(id));
   const [state, setState] = React.useState<State>({
     todo: ''
   });
@@ -71,6 +64,7 @@ const HomePageContainer: React.FunctionComponent<Props> = ({
       todo: e.target.value
     });
   };
+
   const { todo } = state;
 
   return (
@@ -113,14 +107,4 @@ const HomePageContainer: React.FunctionComponent<Props> = ({
   );
 };
 
-export default connect(
-  (state: RootState) => ({
-    todos: todoSelector(state),
-    rehydrated: rehydratedSelector(state)
-  }),
-  (dispatch: Dispatch) => ({
-    addTodo: (todo: TodoTypes.Todo) => dispatch(todoActions.addTodoThunk(todo)),
-    toggleTodo: (id: number) => dispatch(todoActions.toggleComplete(id)),
-    deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
-  })
-)(HomePageContainer);
+export default HomePageContainer;

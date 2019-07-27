@@ -8,7 +8,7 @@ export default async function handler(
   if (!('authorization' in req.headers)) {
     throw Error('Authorization header missing');
   }
-  const auth = req.headers.authorization;
+  const auth = req.headers.authorization ? req.headers.authorization : '';
   const { token } = JSON.parse(auth);
   const url = `https://api.github.com/user/${token}`;
   try {

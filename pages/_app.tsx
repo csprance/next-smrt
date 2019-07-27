@@ -1,7 +1,7 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import withRedux from 'next-redux-wrapper';
-import App, { Container } from 'next/app';
+import App, { AppContext, Container } from 'next/app';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 
@@ -11,8 +11,8 @@ import { theme } from '../styles/styles';
 
 class MyApp extends App {
   // This is for redux
-  static async getInitialProps({ Component, ctx }) {
-    if (ctx.isServer) {
+  static async getInitialProps({ Component, ctx }: AppContext) {
+    if ((ctx as any).isServer) {
       // Runs once per connection only on the server. Good place to get initial state for the site
       // ctx.store.dispatch({ type: 'FOO', payload: 'foo' });
     }
