@@ -1,4 +1,9 @@
 # Change Log
+#### 0.1.1
+- Updated deps 
+- Cleanup Tasks
+- Move from redux connect to hook based
+
 #### 0.1.0
 - Updated deps and massively thinned down required deps.
 - Next 9 awww ya. Built in everything now. Typescript, Customer Server, API, Dynamic Routing

@@ -2,8 +2,14 @@ version: '3'
 
 services:
   nextsmrt:
+    restart: always
     container_name: nextsmrt
-    build: .
+    build:
+      context: .
+      args:
+        NODE_ENV: staging
+        API_KEY: ${API_KEY}
+        API_URL: ${API_URL_STAGING}
     networks:
       - web
     environment:

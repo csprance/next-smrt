@@ -6,6 +6,7 @@ import { css } from 'styled-components';
 // The material ui theme
 export const theme = createMuiTheme({
   palette: {
+    // type: 'dark',
     background: {
       default: '#ededed'
     },

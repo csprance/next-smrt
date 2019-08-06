@@ -2,93 +2,91 @@ import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/Add';
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { media } from '../../styles/styles';
-import SingleTodo from '../components/SingleTodo';
-import { Dispatch, RootState } from '../redux/redux-types';
-import { actions as todoActions, Types as TodoTypes } from '../redux/todo';
+import { actions as todoActions } from '../redux/todo';
 import { rehydratedSelector, todoSelector } from '../redux/todo/selectors';
+import SingleTodoContainer from './SingleTodoContainer';
 
 const Column = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  justify-content: center;
   width: 100%;
   ${media.tablet`
       flex-direction: column;
   `};
-  align-items: center;
-  justify-content: center;
 `;
 const Row = styled.div`
+  align-items: center;
   display: flex;
   flex-grow: 1;
-  width: 100%;
-  max-width: 900px;
   justify-content: center;
-  align-items: center;
+  max-width: 900px;
+  width: 100%;
 `;
 const Spacer = styled.div`
   height: 50px;
 `;
 
-type Props = {
-  todos: TodoTypes.State;
-  addTodo: (todo: TodoTypes.Todo) => void;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-  rehydrated: boolean;
-};
-type State = {
-  todo: string;
-};
-const HomePageContainer: React.FunctionComponent<Props> = ({
-  todos,
-  addTodo,
-  toggleTodo,
-  deleteTodo,
-  rehydrated
-}) => {
-  const [state, setState] = React.useState<State>({
-    todo: ''
-  });
-  const handleCheckBoxTick = (id: number) => toggleTodo(id);
-  const handleDelete = (id: number) => deleteTodo(id);
-  const handleClick = async () => {
-    addTodo({
-      todoText: state.todo,
-      id: Date.now(),
-      completed: false
-    });
-    setState({
-      todo: ''
-    });
-  };
+type Props = {};
+const HomePageContainer: React.FunctionComponent<Props> = ({}) => {
+  // Component State
+  const [todoText, setTodoText] = React.useState<string>('');
+  const [error, setError] = React.useState(false);
   const handleChange = (e: any) => {
-    setState({
-      todo: e.target.value
-    });
+    if (error) {
+      setError(false);
+    }
+    setTodoText(e.target.value);
   };
-  const { todo } = state;
+
+  // Redux
+  const dispatch = useDispatch();
+  const todos = useSelector(todoSelector);
+  const rehydrated = useSelector(rehydratedSelector);
+  const handleEnterPressed = event => {
+    if (event.key === 'Enter') {
+      handleAddTodo();
+    }
+  };
+  const handleAddTodo = () => {
+    if (todoText.length === 0) {
+      return setError(true);
+    }
+    dispatch(
+      todoActions.addTodoThunk({
+        todoText,
+        id: Date.now(),
+        completed: false
+      })
+    );
+    setTodoText('');
+  };
 
   return (
     <>
       <Column>
         <Row>
           <TextField
+            onKeyPress={handleEnterPressed}
+            error={error}
+            helperText={error ? 'Please Include Some text.' : ''}
             fullWidth
             id="todo"
             label="Add Todo"
-            value={todo}
-            onChange={handleChange}
             margin="normal"
+            onChange={handleChange}
+            value={todoText}
           />
           <Fab
             href={'#'}
             size={'small'}
-            onClick={handleClick}
+            onClick={handleAddTodo}
             color="secondary"
             aria-label="Add"
           >
@@ -99,28 +97,11 @@ const HomePageContainer: React.FunctionComponent<Props> = ({
       <Spacer />
       <Column>
         {rehydrated
-          ? todos.map(item => (
-              <SingleTodo
-                handleDelete={handleDelete}
-                handleCheckBoxTick={handleCheckBoxTick}
-                todo={item}
-                key={item.id}
-              />
-            ))
+          ? todos.map(item => <SingleTodoContainer id={item.id} />)
           : ' Loading ...'}
       </Column>
     </>
   );
 };
 
-export default connect(
-  (state: RootState) => ({
-    todos: todoSelector(state),
-    rehydrated: rehydratedSelector(state)
-  }),
-  (dispatch: Dispatch) => ({
-    addTodo: (todo: TodoTypes.Todo) => dispatch(todoActions.addTodoThunk(todo)),
-    toggleTodo: (id: number) => dispatch(todoActions.toggleComplete(id)),
-    deleteTodo: (id: number) => dispatch(todoActions.removeTodo(id))
-  })
-)(HomePageContainer);
+export default HomePageContainer;

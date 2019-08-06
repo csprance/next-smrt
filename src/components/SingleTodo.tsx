@@ -5,6 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Link from 'next/link';
 import * as React from 'react';
 import styled from 'styled-components';
+
 import { Types as TodoTypes } from '../redux/todo';
 
 const Wrapper = styled.div`
@@ -22,17 +23,14 @@ const Spacer = styled.div`
 
 type Props = {
   todo: TodoTypes.Todo;
-  handleCheckBoxTick: (id: number) => void;
-  handleDelete: (id: number) => void;
+  handleCheckBoxTick: () => void;
+  handleDelete: () => void;
 };
 const SingleTodo: React.FunctionComponent<Props> = ({
   todo,
   handleDelete,
   handleCheckBoxTick
 }) => {
-  const handleDeleteClick = () => handleDelete(todo.id);
-  const handleCheckBoxClick = () => handleCheckBoxTick(todo.id);
-
   return (
     <Wrapper>
       <Typography
@@ -49,11 +47,11 @@ const SingleTodo: React.FunctionComponent<Props> = ({
       </Typography>
       <Spacer />
 
-      <IconButton href={'#'} onClick={handleDeleteClick}>
+      <IconButton href={'#'} onClick={handleDelete}>
         <DeleteIcon />
       </IconButton>
 
-      <Checkbox checked={todo.completed} onChange={handleCheckBoxClick} />
+      <Checkbox checked={todo.completed} onChange={handleCheckBoxTick} />
     </Wrapper>
   );
 };

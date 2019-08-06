@@ -2,5 +2,11 @@ version: '3'
 
 services:
   nextsmrt:
+    build:
+      context: .
+      args:
+        NODE_ENV: production
+        API_KEY: ${API_KEY}
+        API_URL: ${API_URL_PRODUCTION}
     labels:
       traefik.frontend.rule: 'Host:next-smrt.csprance.com,www.next-smrt.csprance.com'
