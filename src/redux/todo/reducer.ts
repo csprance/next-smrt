@@ -7,14 +7,8 @@ export default (
   action: Types.TodoActions
 ): Types.State => {
   switch (action.type) {
-    case getType(actions.addTodo.request):
-      return state;
-
     case getType(actions.addTodo.success):
       return [...state, action.payload];
-
-    case getType(actions.addTodo.failure):
-      return state;
 
     case getType(actions.removeTodo):
       return state.filter(todo => todo.id !== action.payload);
