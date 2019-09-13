@@ -97,7 +97,9 @@ const HomePageContainer: React.FunctionComponent<Props> = ({}) => {
       <Spacer />
       <Column>
         {rehydrated
-          ? todos.map(item => <SingleTodoContainer id={item.id} />)
+          ? todos.map(item => (
+              <SingleTodoContainer key={item.id} id={item.id} />
+            ))
           : ' Loading ...'}
       </Column>
     </>

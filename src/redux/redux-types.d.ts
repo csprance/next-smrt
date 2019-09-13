@@ -2,7 +2,6 @@ import { AnyAction, Dispatch as ReduxDispatch } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { StateType } from 'typesafe-actions';
 
-import { Types as AppTypes } from './app';
 import { rootReducer } from './index';
 import { Types as TodoTypes } from './todo';
 

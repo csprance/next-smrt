@@ -1,6 +1,7 @@
 import { createReducer } from 'typesafe-actions';
 
-import { actions, defaultState } from '../todo';
+import { actions } from '../todo';
+import defaultState from './state';
 
 export default createReducer(defaultState)
   .handleAction(actions.addTodo.success, (state, action) => [

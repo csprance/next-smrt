@@ -1,7 +1,7 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import withRedux from 'next-redux-wrapper';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 
@@ -27,15 +27,13 @@ class MyApp extends App {
     const { props } = this as any;
     const { Component, pageProps, store } = props;
     return (
-      <Container>
-        <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <SweetAlertSyle />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </Provider>
-      </Container>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <SweetAlertSyle />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Provider>
     );
   }
 }
