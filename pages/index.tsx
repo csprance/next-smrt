@@ -4,9 +4,9 @@ import * as React from 'react';
 import Layout from '../src/components/Layout';
 import HomePageContainer from '../src/containers/HomePageContainer';
 
-type Props = {
+interface Props {
   gipData: string;
-};
+}
 export class IndexPage extends React.Component<Props> {
   static async getInitialProps({  }: NextPageContext) {
     return {

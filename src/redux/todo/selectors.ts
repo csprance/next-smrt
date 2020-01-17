@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { RootState } from '../redux-types';
+import { Todo } from './types';
 
 export const rehydratedSelector = (store: any) => {
   if (store._persist) {

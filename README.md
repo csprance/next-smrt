@@ -1,4 +1,4 @@
-![Example To Do App](./static/site-image.png)
+![Example To Do App](public/static/site-image.png)
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 

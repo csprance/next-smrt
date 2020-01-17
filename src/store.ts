@@ -7,7 +7,7 @@ import { rootReducer } from './redux';
 import { RootAction, RootState } from './redux/redux-types';
 
 export const initializeStore = (
-  initialState: RootState | undefined = undefined,
+  initialState: RootState| undefined = undefined,
   options
 ) => {
   // Add any middlewares here
@@ -37,7 +37,7 @@ export const initializeStore = (
     const persistedReducer = persistReducer(persistConfig, rootReducer);
     const store = createStore(
       persistedReducer,
-      initialState,
+      undefined,
       composeWithDevTools(applyMiddleware(...middlewares))
     );
     // TODO HACK?
