@@ -1,13 +1,13 @@
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createLogger } from 'redux-logger';
-import thunk, { ThunkMiddleware } from 'redux-thunk';
+import thunk, { ThunkAction, ThunkMiddleware } from 'redux-thunk';
 
 import { rootReducer } from './redux';
 import { RootAction, RootState } from './redux/redux-types';
 
 export const initializeStore = (
-  initialState: RootState| undefined = undefined,
+  initialState: RootState | undefined = undefined,
   options
 ) => {
   // Add any middlewares here
@@ -26,13 +26,13 @@ export const initializeStore = (
     const { persistReducer, persistStore } = require('redux-persist');
     const storage = require('redux-persist/lib/storage').default;
     if (process.env.NODE_ENV !== `production`) {
-      devMiddlewares.forEach(mw => {
+      devMiddlewares.forEach((mw) => {
         middlewares.push(mw);
       });
     }
     const persistConfig = {
       key: '3.0.0',
-      storage
+      storage,
     };
     const persistedReducer = persistReducer(persistConfig, rootReducer);
     const store = createStore(
@@ -46,3 +46,7 @@ export const initializeStore = (
     return store;
   }
 };
+
+export type AppDispatch = typeof store.dispatch;
+
+export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>;
