@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import SingleTodo from '../components/SingleTodo';
+import {RootState} from "../redux";
 import { todoByIdSelector } from '../redux/todo/selectors';
 import { removeTodo, toggleComplete } from '../redux/todo/todoSlice';
 
@@ -10,7 +11,7 @@ interface Props {
 }
 const SingleTodoContainer: React.FunctionComponent<Props> = ({ id }) => {
   const dispatch = useDispatch();
-  const todo = useSelector((state) => todoByIdSelector(state, { id }));
+  const todo = useSelector((state: RootState) => todoByIdSelector(state, { id }));
   const toggleTodo = () => dispatch(toggleComplete(id));
   const deleteTodo = () => dispatch(removeTodo(id));
 

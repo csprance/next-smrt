@@ -47,7 +47,7 @@ const HomePageContainer: React.FC = () => {
   // Redux
   const dispatch = useDispatch();
   const todos = useSelector(todoSelector);
-  const handleEnterPressed = (event) => {
+  const handleEnterPressed = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       handleAddTodo();
     }
@@ -71,7 +71,7 @@ const HomePageContainer: React.FC = () => {
       <Column>
         <Row>
           <TextField
-            onKeyPress={handleEnterPressed}
+            onKeyDown={handleEnterPressed}
             error={error}
             helperText={error ? 'Please Include Some text.' : ''}
             fullWidth

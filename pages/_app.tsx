@@ -8,12 +8,11 @@ import { wrapper } from '../src/store';
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
-const App = wrapper.withRedux(({ Component, pageProps }) => {
+const App = wrapper.withRedux(({ Component, pageProps }: any) => {
   const store = useStore();
-
   return (
     <PersistGate
-      persistor={(store as any).__persistor}
+      persistor={(store as any).__persistor} // This is pretty hacky but recommended by next-redux-wrapper
       loading={<div>Loading</div>}
     >
       <ThemeProvider theme={theme}>

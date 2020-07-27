@@ -47,8 +47,7 @@ export const media: MediaTypes = Object.keys(mediaQuerySizes).reduce<
     const emSize = mediaQuerySizes[label] / 16;
     accumulator[label] = (...args: any) => css`
       @media (max-width: ${emSize}em) {
-        // @ts-ignore
-        ${css(...args)};
+        ${css({...args})};
       }
     `;
     return accumulator;

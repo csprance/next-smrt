@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppThunk } from '../../store';
 import initialState from './state';
 import { Todo } from './types';
 import { doSomethingAsync } from './utils';
-import { AppThunk } from '../../store';
 
 export const todoSlice = createSlice({
   name: 'todo',

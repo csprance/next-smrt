@@ -1,13 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 
-export const rehydratedSelector = (store: any) => {
-  if (store._persist) {
-    return store._persist.rehydrated;
-  }
-  return false;
-};
-
 export const todoSelector = (state: RootState, _props?: any) => state.todo;
 
 export const completedTodosSelector = createSelector(todoSelector, (todos) =>
@@ -17,7 +10,8 @@ export const completedTodosSelector = createSelector(todoSelector, (todos) =>
 export const unfinishedTodosSelector = createSelector(todoSelector, (todos) =>
   todos.filter((todo) => !todo.completed)
 );
-export const propsIdSelector = (state, props: { id: number } & any) => props.id;
+
+export const propsIdSelector = (state: RootState, props: { id: number } & any) => props.id;
 
 export const todoByIdSelector = createSelector(
   todoSelector,

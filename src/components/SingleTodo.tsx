@@ -6,7 +6,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Types as TodoTypes } from '../redux/todo';
+import { Todo } from '../redux/todo/types';
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,14 +22,14 @@ const Spacer = styled.div`
 `;
 
 type Props = {
-  todo: TodoTypes.Todo;
+  todo: Todo;
   handleCheckBoxTick: () => void;
   handleDelete: () => void;
 };
 const SingleTodo: React.FunctionComponent<Props> = ({
   todo,
   handleDelete,
-  handleCheckBoxTick
+  handleCheckBoxTick,
 }) => {
   return (
     <Wrapper>
@@ -38,7 +38,7 @@ const SingleTodo: React.FunctionComponent<Props> = ({
         gutterBottom
         style={{
           textDecoration: todo.completed ? 'line-through' : 'none',
-          color: todo.completed ? 'gray' : 'inherit'
+          color: todo.completed ? 'gray' : 'inherit',
         }}
       >
         <Link href={`/todo/[id]`} as={`/todo/${todo.id}`}>
