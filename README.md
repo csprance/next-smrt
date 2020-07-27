@@ -17,10 +17,8 @@ I use it to kickstart everything I do now. Works great in production and comes w
  - [next@9](https://github.com/zeit/next.js)
  - [react@16](https://github.com/facebook/react)
  - [typescript](https://github.com/Microsoft/TypeScript)
- - [redux@4](https://github.com/reduxjs/redux)
- - [redux-thunk](https://github.com/reduxjs/redux-thunk)
+ - [redux-toolkit](https://github.com/reduxjs/redux-toolkit)
  - [redux-persist](https://github.com/rt2zz/redux-persist)
- - [typesafe-actions](https://github.com/piotrwitek/typesafe-actions)
  - [Jest](https://github.com/facebook/jest)
  
 

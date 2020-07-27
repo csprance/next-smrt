@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { media } from '../../styles/styles';
-import { rehydratedSelector, todoSelector } from '../redux/todo/selectors';
-import SingleTodoContainer from './SingleTodoContainer';
+import { todoSelector } from '../redux/todo/selectors';
 import { addTodoThunk } from '../redux/todo/todoSlice';
+import SingleTodoContainer from './SingleTodoContainer';
 
 const Column = styled.div`
   align-items: center;
@@ -33,7 +33,7 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
-const HomePageContainer: React.FC = ({}) => {
+const HomePageContainer: React.FC = () => {
   // Component State
   const [todoText, setTodoText] = React.useState<string>('');
   const [error, setError] = React.useState(false);
@@ -47,7 +47,6 @@ const HomePageContainer: React.FC = ({}) => {
   // Redux
   const dispatch = useDispatch();
   const todos = useSelector(todoSelector);
-  const rehydrated = useSelector(rehydratedSelector);
   const handleEnterPressed = (event) => {
     if (event.key === 'Enter') {
       handleAddTodo();

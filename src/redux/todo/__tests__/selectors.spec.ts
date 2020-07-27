@@ -1,5 +1,5 @@
 import { reduceToIDs } from '../../../lib/utils';
-import { defaultState } from '../index';
+import { defaultState } from '../state';
 import { completedTodosSelector, unfinishedTodosSelector } from '../selectors';
 
 describe('Todo Selectors', () => {

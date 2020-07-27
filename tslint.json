@@ -1,15 +1,7 @@
 {
   "rules": {
-    "interface-name": false,
-    "variable-name": false,
     "no-submodule-imports": false,
-    "no-empty-interface": false,
-    "interface-over-type-literal": false,
-    "object-literal-sort-keys": false,
-    "member-access": false
+    "ordered-imports": true
   },
-  "extends": [
-    "tslint:latest",
-    "tslint-config-prettier"
-  ]
+  "extends": ["tslint:latest", "tslint-config-prettier"]
 }

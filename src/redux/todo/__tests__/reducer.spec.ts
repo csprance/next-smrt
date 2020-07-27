@@ -1,6 +1,6 @@
-import * as actions from '../actions';
-import reducer from '../reducer';
+import  reducer, {todoSlice} from '../todoSlice';
 
+const actions = todoSlice.actions;
 describe('Todos Reducer', () => {
   it('Should Add a New Todo', () => {
     const todo = {
@@ -8,7 +8,7 @@ describe('Todos Reducer', () => {
       todoText: 'Test Reducer',
       completed: false
     };
-    expect(reducer([], actions.addTodo.success(todo))).toEqual([todo]);
+    expect(reducer([], actions.addTodo(todo))).toEqual([todo]);
   });
 
   it('Should remove Todo', () => {

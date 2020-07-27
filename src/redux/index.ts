@@ -1,10 +1,11 @@
-import {combineReducers} from '@reduxjs/toolkit'
+import { combineReducers } from '@reduxjs/toolkit';
+
 import todoReducer from './todo/todoSlice';
 
 const rootReducer = combineReducers({
-  todo: todoReducer
-})
+  todo: todoReducer,
+});
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof rootReducer>;
 
-export default rootReducer
+export default rootReducer;

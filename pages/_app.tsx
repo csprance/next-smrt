@@ -1,39 +1,28 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
-import App, { AppInitialProps, AppContext } from 'next/app';
 import * as React from 'react';
+import { useStore } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import { wrapper } from '../src/store';
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
-class MyApp extends App<AppInitialProps> {
-  // This is for redux
-  public static getInitialProps = async ({ Component, ctx }: AppContext) => {
-    // ctx.store.dispatch({type: 'TOE', payload: 'was set in _app'});
+const App = wrapper.withRedux(({ Component, pageProps }) => {
+  const store = useStore();
 
-    return {
-      pageProps: {
-        // Call page-level getInitialProps
-        ...(Component.getInitialProps
-          ? await Component.getInitialProps(ctx)
-          : {}),
-        // Some custom thing for all pages
-        pathname: ctx.pathname,
-      },
-    };
-  };
-
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
+  return (
+    <PersistGate
+      persistor={(store as any).__persistor}
+      loading={<div>Loading</div>}
+    >
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <SweetAlertSyle />
         <Component {...pageProps} />
       </ThemeProvider>
-    );
-  }
-}
+    </PersistGate>
+  );
+});
 
-export default wrapper.withRedux(MyApp);
+export default App;

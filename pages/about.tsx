@@ -64,16 +64,14 @@ AboutPage.getInitialProps = async ({ req, res }) => {
   // The data will fetch either on the client or the server server
   // on first page visit or reload and client when using links
   try {
-    const {data} = await axios.get('https://api.chucknorris.io/jokes/random');
+    const { data } = await axios.get('https://api.chucknorris.io/jokes/random');
     return {
-      gipData: data.value
+      gipData: data.value,
     };
-  }
-  catch (e) {
+  } catch (e) {
     return {
-      gipData: 'Error Fetching a cool Chuck Joke Sorry.'
+      gipData: 'Error Fetching a cool Chuck Joke Sorry.',
     };
-
   }
 };
 export default AboutPage;

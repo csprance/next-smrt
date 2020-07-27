@@ -4,7 +4,7 @@ import { Todo } from './types';
 import { doSomethingAsync } from './utils';
 import { AppThunk } from '../../store';
 
-const todoSlice = createSlice({
+export const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
