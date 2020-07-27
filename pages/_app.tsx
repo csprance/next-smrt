@@ -1,41 +1,27 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
-import withRedux from 'next-redux-wrapper';
-import App from 'next/app';
 import * as React from 'react';
-import { Provider } from 'react-redux';
+import { useStore } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { initializeStore } from '../src/store';
+import { wrapper } from '../src/store';
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
-class MyApp extends App {
-  // This is for redux
-  static async getInitialProps({ Component, ctx }) {
-    if (ctx.isServer) {
-      // Runs once per connection only on the server. Good place to get initial state for the site
-      // ctx.store.dispatch({ type: 'FOO', payload: 'foo' });
-    }
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
+const App = wrapper.withRedux(({ Component, pageProps }: any) => {
+  const store = useStore();
+  return (
+    <PersistGate
+      persistor={(store as any).__persistor} // This is pretty hacky but recommended by next-redux-wrapper
+      loading={<div>Loading</div>}
+    >
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <SweetAlertSyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </PersistGate>
+  );
+});
 
-    return { pageProps };
-  }
-
-  render() {
-    const { props } = this as any;
-    const { Component, pageProps, store } = props;
-    return (
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <SweetAlertSyle />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </Provider>
-    );
-  }
-}
-
-export default withRedux(initializeStore)(MyApp);
+export default App;

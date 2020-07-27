@@ -1,48 +1,49 @@
-import { applyMiddleware, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-import { createLogger } from 'redux-logger';
-import thunk, { ThunkMiddleware } from 'redux-thunk';
+import {
+  Action,
+  configureStore,
+  getDefaultMiddleware,
+  ThunkAction,
+} from '@reduxjs/toolkit';
+import { Context, createWrapper, MakeStore } from 'next-redux-wrapper';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import { rootReducer } from './redux';
-import { RootAction, RootState } from './redux/redux-types';
+import rootReducer, { RootState } from './redux';
 
-export const initializeStore = (
-  initialState: RootState| undefined = undefined,
-  options
-) => {
-  // Add any middlewares here
-  const middlewares = [thunk as ThunkMiddleware<RootState, RootAction>];
-
-  // Add any dev only middlewares here
-  const devMiddlewares = [createLogger()];
-
-  if (options.isServer) {
-    return createStore(
-      rootReducer,
-      initialState,
-      applyMiddleware(...middlewares)
-    );
-  } else {
-    const { persistReducer, persistStore } = require('redux-persist');
-    const storage = require('redux-persist/lib/storage').default;
-    if (process.env.NODE_ENV !== `production`) {
-      devMiddlewares.forEach(mw => {
-        middlewares.push(mw);
-      });
-    }
-    const persistConfig = {
-      key: '3.0.0',
-      storage
-    };
-    const persistedReducer = persistReducer(persistConfig, rootReducer);
-    const store = createStore(
-      persistedReducer,
-      undefined,
-      composeWithDevTools(applyMiddleware(...middlewares))
-    );
-    // TODO HACK?
-    (store as any).__persistor = persistStore(store);
-
-    return store;
-  }
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
 };
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  devTools: true,
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+});
+
+(store as any).__persistor = persistStore(store); // Nasty hack
+
+// create a makeStore function
+const makeStore: MakeStore<RootState> = (context: Context) => store;
+
+// export an assembled wrapper
+export const wrapper = createWrapper<RootState>(makeStore, { debug: true });
+
+export type AppDispatch = typeof store.dispatch;
+
+export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>;

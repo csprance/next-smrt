@@ -1,6 +1,6 @@
 import { reduceToIDs } from '../../../lib/utils';
-import { defaultState } from '../index';
 import { completedTodosSelector, unfinishedTodosSelector } from '../selectors';
+import { defaultState } from '../state';
 
 describe('Todo Selectors', () => {
   it('Should get the completed todos', () => {

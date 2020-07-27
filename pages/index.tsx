@@ -8,9 +8,9 @@ interface Props {
   gipData: string;
 }
 export class IndexPage extends React.Component<Props> {
-  static async getInitialProps({  }: NextPageContext) {
+  static async getInitialProps({}: NextPageContext) {
     return {
-      gipData: 'Data from getInitialProps of IndexPage'
+      gipData: 'Data from getInitialProps of IndexPage',
     };
   }
 

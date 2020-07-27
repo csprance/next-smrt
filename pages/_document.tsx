@@ -8,7 +8,7 @@ import {
   SITE_DESCRIPTION,
   SITE_IMAGE,
   SITE_NAME,
-  SITE_TITLE
+  SITE_TITLE,
 } from '../src/constants/env';
 
 class MyDocument extends Document {
@@ -63,7 +63,7 @@ class MyDocument extends Document {
   }
 }
 
-MyDocument.getInitialProps = async ctx => {
+MyDocument.getInitialProps = async (ctx) => {
   // Set up our styled-components and material-ui style sheets here
   // Render app and page and get the context of the page with collected side effects.
   const muiSheets = new ServerStyleSheets();
@@ -72,8 +72,8 @@ MyDocument.getInitialProps = async ctx => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: App => props =>
-        scSheet.collectStyles(muiSheets.collect(<App {...props} />))
+      enhanceApp: (App) => (props) =>
+        scSheet.collectStyles(muiSheets.collect(<App {...props} />)),
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -86,8 +86,8 @@ MyDocument.getInitialProps = async ctx => {
         {initialProps.styles}
         {muiSheets.getStyleElement()}
         {scSheet.getStyleElement()}
-      </React.Fragment>
-    ]
+      </React.Fragment>,
+    ],
   };
 };
 

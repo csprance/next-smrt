@@ -24,8 +24,7 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
-interface Props {}
-const Layout: React.FunctionComponent<Props> = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   const handleMenuButtonClick = () => {
     notify('Also comes with SweetAlert');
   };
