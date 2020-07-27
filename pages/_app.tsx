@@ -1,41 +1,39 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
-import withRedux from 'next-redux-wrapper';
-import App from 'next/app';
+import App, { AppInitialProps, AppContext } from 'next/app';
 import * as React from 'react';
-import { Provider } from 'react-redux';
 
-import { initializeStore } from '../src/store';
+import { wrapper } from '../src/store';
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
-class MyApp extends App {
+class MyApp extends App<AppInitialProps> {
   // This is for redux
-  static async getInitialProps({ Component, ctx }) {
-    if (ctx.isServer) {
-      // Runs once per connection only on the server. Good place to get initial state for the site
-      // ctx.store.dispatch({ type: 'FOO', payload: 'foo' });
-    }
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
+  public static getInitialProps = async ({ Component, ctx }: AppContext) => {
+    // ctx.store.dispatch({type: 'TOE', payload: 'was set in _app'});
 
-    return { pageProps };
-  }
+    return {
+      pageProps: {
+        // Call page-level getInitialProps
+        ...(Component.getInitialProps
+          ? await Component.getInitialProps(ctx)
+          : {}),
+        // Some custom thing for all pages
+        pathname: ctx.pathname,
+      },
+    };
+  };
 
   render() {
-    const { props } = this as any;
-    const { Component, pageProps, store } = props;
+    const { Component, pageProps } = this.props;
     return (
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <SweetAlertSyle />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <SweetAlertSyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
     );
   }
 }
 
-export default withRedux(initializeStore)(MyApp);
+export default wrapper.withRedux(MyApp);

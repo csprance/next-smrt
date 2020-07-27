@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { media } from '../../styles/styles';
-import { actions as todoActions } from '../redux/todo';
 import { rehydratedSelector, todoSelector } from '../redux/todo/selectors';
 import SingleTodoContainer from './SingleTodoContainer';
+import { addTodoThunk } from '../redux/todo/todoSlice';
 
 const Column = styled.div`
   align-items: center;
@@ -33,8 +33,7 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
-type Props = {};
-const HomePageContainer: React.FunctionComponent<Props> = ({}) => {
+const HomePageContainer: React.FC = ({}) => {
   // Component State
   const [todoText, setTodoText] = React.useState<string>('');
   const [error, setError] = React.useState(false);
@@ -49,7 +48,7 @@ const HomePageContainer: React.FunctionComponent<Props> = ({}) => {
   const dispatch = useDispatch();
   const todos = useSelector(todoSelector);
   const rehydrated = useSelector(rehydratedSelector);
-  const handleEnterPressed = event => {
+  const handleEnterPressed = (event) => {
     if (event.key === 'Enter') {
       handleAddTodo();
     }
@@ -59,10 +58,10 @@ const HomePageContainer: React.FunctionComponent<Props> = ({}) => {
       return setError(true);
     }
     dispatch(
-      todoActions.addTodoThunk({
+      addTodoThunk({
         todoText,
         id: Date.now(),
-        completed: false
+        completed: false,
       })
     );
     setTodoText('');
@@ -96,11 +95,9 @@ const HomePageContainer: React.FunctionComponent<Props> = ({}) => {
       </Column>
       <Spacer />
       <Column>
-        {rehydrated
-          ? todos.map(item => (
-              <SingleTodoContainer key={item.id} id={item.id} />
-            ))
-          : ' Loading ...'}
+        {todos.map((item) => (
+          <SingleTodoContainer key={item.id} id={item.id} />
+        ))}
       </Column>
     </>
   );

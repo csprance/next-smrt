@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import initialState from './state';
 import { Todo } from './types';
 import { doSomethingAsync } from './utils';
-import {AppThunk} from "../../store";
+import { AppThunk } from '../../store';
 
 const todoSlice = createSlice({
   name: 'todo',
@@ -12,19 +12,19 @@ const todoSlice = createSlice({
       state.push(action.payload);
     },
     removeTodo(state, action: PayloadAction<number>) {
-      return state.filter((t) => t.id === action.payload);
+      return state.filter((t) => t.id !== action.payload);
     },
     toggleComplete(state, action: PayloadAction<number>) {
-      for (const draft of state) {
-        if (draft.id === action.payload) {
-          draft.completed = true;
+      for (const todo of state) {
+        if (todo.id === action.payload) {
+          todo.completed = !todo.completed;
         }
       }
     },
   },
 });
 
-export const { addTodo, removeTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleComplete } = todoSlice.actions;
 
 export default todoSlice.reducer;
 
@@ -33,6 +33,6 @@ export const addTodoThunk = (todo: Todo): AppThunk => async (dispatch) => {
     const mutatedTodo = await doSomethingAsync(todo);
     dispatch(addTodo(mutatedTodo));
   } catch (err) {
-    dispatch(getRepoDetailsFailed(err.toString()));
+    // Log an error here
   }
 };
