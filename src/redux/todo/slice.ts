@@ -4,7 +4,7 @@ import initialState from './state';
 import { Todo } from './types';
 import { doSomethingAsync } from './utils';
 
-export const todoSlice = createSlice({
+export const slice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
@@ -24,9 +24,9 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, removeTodo, toggleComplete } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleComplete } = slice.actions;
 
-export default todoSlice.reducer;
+export default slice.reducer;
 
 export const addTodoThunk = (todo: Todo): AppThunk => async (dispatch) => {
   try {

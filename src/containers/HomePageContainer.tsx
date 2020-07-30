@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import { media } from '../../styles/styles';
 import { todoSelector } from '../redux/todo/selectors';
-import { addTodoThunk } from '../redux/todo/todoSlice';
+import { addTodoThunk } from '../redux/todo/slice';
 import SingleTodoContainer from './SingleTodoContainer';
 
 const Column = styled.div`

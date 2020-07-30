@@ -1,5 +1,6 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
+import Head from 'next/head';
 import * as React from 'react';
 import { useStore } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -18,6 +19,16 @@ const App = wrapper.withRedux(({ Component, pageProps }: any) => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <SweetAlertSyle />
+        <Head>
+          <title>Next-Smrt</title>
+          <meta
+              name="viewport"
+              content={
+                'user-scalable=0, initial-scale=1, ' +
+                'minimum-scale=1, width=device-width, height=device-height'
+              }
+          />
+        </Head>
         <Component {...pageProps} />
       </ThemeProvider>
     </PersistGate>

@@ -25,14 +25,6 @@ class MyDocument extends Document {
             type="image/x-icon"
           />
           <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
-          {/* Use minimum-scale=1 to enable GPU rasterization */}
-          <meta
-            name="viewport"
-            content={
-              'user-scalable=0, initial-scale=1, ' +
-              'minimum-scale=1, width=device-width, height=device-height'
-            }
-          />
           {/* PWA primary color */}
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content={SITE_NAME} />

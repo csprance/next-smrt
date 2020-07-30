@@ -32,7 +32,7 @@ export const AboutPage: NextPage<Props> = ({ gipData }) => {
         <h1>Next-SMRT</h1>
         <h2>
           Next.js, Styled Components, Material-UI, Redux (With
-          Typesafe-Actions), Typescript
+          Redux-Toolkit), Typescript
         </h2>
 
         <p>

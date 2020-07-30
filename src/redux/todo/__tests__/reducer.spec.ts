@@ -1,6 +1,6 @@
-import  reducer, {todoSlice} from '../todoSlice';
+import  reducer, {slice} from '../slice';
 
-const actions = todoSlice.actions;
+const actions = slice.actions;
 describe('Todos Reducer', () => {
   it('Should Add a New Todo', () => {
     const todo = {

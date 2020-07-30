@@ -3,7 +3,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 # Next-SMRT
-> Next.js, Styled Components, Material-UI, Redux (With Typesafe-Actions), Typescript
+> Next.js, Styled Components, Material-UI, Redux (With Redux-Toolkit), Typescript
 
 A lot of the next.js examples have some of those features but not all together. So I decided to roll them all into one boilerplate.
 

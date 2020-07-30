@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SingleTodo from '../components/SingleTodo';
 import {RootState} from "../redux";
 import { todoByIdSelector } from '../redux/todo/selectors';
-import { removeTodo, toggleComplete } from '../redux/todo/todoSlice';
+import { removeTodo, toggleComplete } from '../redux/todo/slice';
 
 interface Props {
   id: number;
