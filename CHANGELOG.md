@@ -1,4 +1,8 @@
 # Change Log
+#### 1.0.0
+- Moved to redux-toolkit
+- Cleaned up code a bit
+
 #### 0.1.1
 - Updated deps 
 - Cleanup Tasks
