@@ -1,7 +1,8 @@
 {
   "rules": {
     "no-submodule-imports": false,
-    "ordered-imports": true
+    "ordered-imports": true,
+    "no-implicit-dependencies": [true, "dev"]
   },
   "extends": ["tslint:latest", "tslint-config-prettier"]
 }

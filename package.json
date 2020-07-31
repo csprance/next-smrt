@@ -11,7 +11,9 @@
     "lint": "tslint -p ./tsconfig.json",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -30,6 +32,11 @@
     "sweetalert": "^2.1.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "5.3.19",
+    "@storybook/addon-links": "5.3.19",
+    "@storybook/addons": "5.3.19",
+    "@storybook/preset-typescript": "3.0.0",
+    "@storybook/react": "5.3.19",
     "@types/jest": "^26.0.7",
     "@types/next-redux-wrapper": "^3.0.0",
     "@types/node": "^14.0.26",
@@ -37,10 +44,13 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-responsive": "^8.0.2",
     "@types/styled-components": "^5.1.1",
+    "babel-loader": "^8.1.0",
+    "fork-ts-checker-webpack-plugin": "5.0.4",
     "jest": "^26.1.0",
     "ts-jest": "^26.1.3",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
+    "ts-loader": "7.0.5",
     "typescript": "^3.9.7"
   }
 }
