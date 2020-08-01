@@ -1,6 +1,6 @@
 {
   "name": "next-smrt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Chris Sprance <chrissprance@gmail.com>",
   "scripts": {
     "dev": "next",

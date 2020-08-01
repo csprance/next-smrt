@@ -1,4 +1,7 @@
 # Change Log
+#### 1.0.1
+- Added in Storybook 
+
 #### 1.0.0
 - Moved to redux-toolkit
 - Cleaned up code a bit
