@@ -42,7 +42,7 @@ const SingleTodo: React.FunctionComponent<Props> = ({
         }}
       >
         <Link href={`/todo/[id]`} as={`/todo/${todo.id}`}>
-          <a>{todo.todoText}</a>
+          <a style={{textDecoration: 'none', color: 'inherit'}}>{todo.todoText}</a>
         </Link>
       </Typography>
       <Spacer />
