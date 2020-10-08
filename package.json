@@ -21,7 +21,7 @@
     "@material-ui/styles": "^4.10.0",
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.19.2",
-    "next": "^9.5.1",
+    "next": "^9.5.4",
     "next-redux-wrapper": "^6.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
