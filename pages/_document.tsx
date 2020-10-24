@@ -1,5 +1,5 @@
 import { ServerStyleSheets } from '@material-ui/styles';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import * as React from 'react';
 import { ServerStyleSheet as SCServerStyleSheet } from 'styled-components';
 
@@ -14,7 +14,7 @@ import {
 class MyDocument extends Document {
   render() {
     return (
-      <html lang="en" dir="ltr">
+      <Html lang="en" dir="ltr">
         <Head>
           <meta charSet="utf-8" />
           <meta name="description" content={SITE_DESCRIPTION} />
@@ -50,7 +50,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

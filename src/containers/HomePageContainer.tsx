@@ -63,7 +63,7 @@ const HomePageContainer: React.FC = () => {
         completed: false,
       })
     );
-    setTodoText('');
+    setTodoText(''); // Clear the text out
   };
 
   return (

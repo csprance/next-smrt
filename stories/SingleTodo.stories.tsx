@@ -20,13 +20,13 @@ export const SingleTodoNotCompleted = () => (
 );
 
 export const SingleTodoCompleted = () => (
-    <SingleTodo
-        handleCheckBoxTick={action('Check Box Tick')}
-        handleDelete={action('Deleting')}
-        todo={{
-            id: -1,
-            todoText: 'Completed Todo',
-            completed: true,
-        }}
-    />
+  <SingleTodo
+    handleCheckBoxTick={action('Check Box Tick')}
+    handleDelete={action('Deleting')}
+    todo={{
+      id: -1,
+      todoText: 'Completed Todo',
+      completed: true,
+    }}
+  />
 );

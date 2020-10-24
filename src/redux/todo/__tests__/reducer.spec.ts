@@ -1,14 +1,13 @@
-import  reducer, {slice} from '../slice';
+import reducer, { addTodo, removeTodo, toggleComplete } from '../slice';
 
-const actions = slice.actions;
 describe('Todos Reducer', () => {
   it('Should Add a New Todo', () => {
     const todo = {
       id: -1,
       todoText: 'Test Reducer',
-      completed: false
+      completed: false,
     };
-    expect(reducer([], actions.addTodo(todo))).toEqual([todo]);
+    expect(reducer([], addTodo(todo))).toEqual([todo]);
   });
 
   it('Should remove Todo', () => {
@@ -18,10 +17,10 @@ describe('Todos Reducer', () => {
           {
             id: 0,
             todoText: 'Clone Next-SMRT Repository',
-            completed: true
-          }
+            completed: true,
+          },
         ],
-        actions.removeTodo(0)
+        removeTodo(0)
       )
     ).toEqual([]);
   });
@@ -33,17 +32,17 @@ describe('Todos Reducer', () => {
           {
             id: 0,
             todoText: 'Clone Next-SMRT Repository',
-            completed: false
-          }
+            completed: false,
+          },
         ],
-        actions.toggleComplete(0)
+        toggleComplete(0)
       )
     ).toEqual([
       {
         id: 0,
         todoText: 'Clone Next-SMRT Repository',
-        completed: true
-      }
+        completed: true,
+      },
     ]);
   });
 });

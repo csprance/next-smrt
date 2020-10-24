@@ -44,6 +44,7 @@ const Layout: React.FC = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" color="inherit">
             <div style={{ paddingLeft: 20 }}>
               <Link href={'/'}>
@@ -51,6 +52,7 @@ const Layout: React.FC = ({ children }) => {
               </Link>
             </div>
           </Typography>
+
           <div style={{ flexGrow: 1 }} />
 
           <Link href={'/about'}>
@@ -73,6 +75,7 @@ const Layout: React.FC = ({ children }) => {
               <GithubIcon />
             </IconButton>
           </Tooltip>
+
         </Toolbar>
       </AppBar>
       <Spacer />

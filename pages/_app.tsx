@@ -22,11 +22,11 @@ const App = wrapper.withRedux(({ Component, pageProps }: any) => {
         <Head>
           <title>Next-Smrt</title>
           <meta
-              name="viewport"
-              content={
-                'user-scalable=0, initial-scale=1, ' +
-                'minimum-scale=1, width=device-width, height=device-height'
-              }
+            name="viewport"
+            content={
+              'user-scalable=0, initial-scale=1, ' +
+              'minimum-scale=1, width=device-width, height=device-height'
+            }
           />
         </Head>
         <Component {...pageProps} />

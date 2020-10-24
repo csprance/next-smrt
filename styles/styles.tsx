@@ -6,14 +6,14 @@ import { css } from 'styled-components';
 // The material ui theme
 export const theme = createMuiTheme({
   palette: {
-    // type: 'dark',
+    type: 'dark',
     primary: {
-      main: '#3f50b2'
+      main: '#212121',
     },
     secondary: {
-      main: '#fc3d04'
-    }
-  }
+      main: '#0ebf11',
+    },
+  },
 });
 
 // these sizes are arbitrary and you can set them to whatever you wish
@@ -28,7 +28,7 @@ export const mediaQuerySizes: { [s: string]: number } = {
   giant: 1170,
   desktop: 992,
   tablet: 768,
-  phone: 500
+  phone: 500,
 };
 interface MediaTypes {
   [key: string]: any;
@@ -47,7 +47,7 @@ export const media: MediaTypes = Object.keys(mediaQuerySizes).reduce<
     const emSize = mediaQuerySizes[label] / 16;
     accumulator[label] = (...args: any) => css`
       @media (max-width: ${emSize}em) {
-        ${css({...args})};
+        ${css({ ...args })};
       }
     `;
     return accumulator;
@@ -56,6 +56,6 @@ export const media: MediaTypes = Object.keys(mediaQuerySizes).reduce<
     giant: (str: TemplateStringsArray) => str,
     desktop: (str: TemplateStringsArray) => str,
     tablet: (str: TemplateStringsArray) => str,
-    phone: (str: TemplateStringsArray) => str
+    phone: (str: TemplateStringsArray) => str,
   }
 );

@@ -11,7 +11,10 @@ export const unfinishedTodosSelector = createSelector(todoSelector, (todos) =>
   todos.filter((todo) => !todo.completed)
 );
 
-export const propsIdSelector = (state: RootState, props: { id: number } & any) => props.id;
+export const propsIdSelector = (
+  state: RootState,
+  props: { id: number } & any
+) => props.id;
 
 export const todoByIdSelector = createSelector(
   todoSelector,

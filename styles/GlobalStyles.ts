@@ -1,8 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './styles';
 
-export const SweetAlertSyle =
-  createGlobalStyle`
+export const SweetAlertSyle = createGlobalStyle`
   .next-smrt-theme{
     & .swal-title {
       font-weight: 100;

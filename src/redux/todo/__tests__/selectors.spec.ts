@@ -1,5 +1,9 @@
 import { reduceToIDs } from '../../../lib/utils';
-import { completedTodosSelector, unfinishedTodosSelector } from '../selectors';
+import {
+  completedTodosSelector,
+  todoByIdSelector,
+  unfinishedTodosSelector,
+} from '../selectors';
 import { defaultState } from '../state';
 
 describe('Todo Selectors', () => {
@@ -15,5 +19,10 @@ describe('Todo Selectors', () => {
       .resultFunc([...defaultState])
       .reduce(reduceToIDs, [] as number[]);
     expect(unfinishedTodosIDs).toEqual([3, 4, 5]);
+  });
+
+  it('Should get a specific todo by ID', () => {
+    const todoByID = todoByIdSelector.resultFunc(defaultState, 1);
+    expect(todoByID).toEqual(defaultState[1]);
   });
 });

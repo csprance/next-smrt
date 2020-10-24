@@ -1,5 +1,4 @@
 import Box from '@material-ui/core/Box';
-import axios from 'axios';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import * as React from 'react';
@@ -64,9 +63,10 @@ AboutPage.getInitialProps = async ({ req, res }) => {
   // The data will fetch either on the client or the server server
   // on first page visit or reload and client when using links
   try {
-    const { data } = await axios.get('https://api.chucknorris.io/jokes/random');
+    const response  = await fetch('https://api.chucknorris.io/jokes/random');
+    const joke = await response.json();
     return {
-      gipData: data.value,
+      gipData: joke.value,
     };
   } catch (e) {
     return {
