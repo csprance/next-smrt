@@ -75,7 +75,6 @@ const Layout: React.FC = ({ children }) => {
               <GithubIcon />
             </IconButton>
           </Tooltip>
-
         </Toolbar>
       </AppBar>
       <Spacer />

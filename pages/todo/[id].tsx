@@ -25,4 +25,11 @@ const TodoIDPage: NextPage = () => {
   );
 };
 
+TodoIDPage.getInitialProps = async ()=> {
+    console.log('Getting Initial Props');
+    return {
+        initialProps: true
+    }
+}
+
 export default TodoIDPage;

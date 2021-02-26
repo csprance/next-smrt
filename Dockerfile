@@ -1,4 +1,4 @@
-# node:12
+# node:14
 FROM node:14
 
 # install the application

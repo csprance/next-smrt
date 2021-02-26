@@ -1,5 +1,6 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
+import App, { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
 import * as React from 'react';
 import { useStore } from 'react-redux';
@@ -9,7 +10,7 @@ import { wrapper } from '../src/store';
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
-const App = wrapper.withRedux(({ Component, pageProps }: any) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const store = useStore();
   return (
     <PersistGate
@@ -33,6 +34,13 @@ const App = wrapper.withRedux(({ Component, pageProps }: any) => {
       </ThemeProvider>
     </PersistGate>
   );
-});
+};
 
-export default App;
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(appContext);
+
+  return { ...appProps };
+};
+
+export default wrapper.withRedux(MyApp);

@@ -21,11 +21,11 @@ const Spacer = styled.div`
   flex-grow: 5;
 `;
 
-type Props = {
+interface Props {
   todo: Todo;
   handleCheckBoxTick: () => void;
   handleDelete: () => void;
-};
+}
 const SingleTodo: React.FunctionComponent<Props> = ({
   todo,
   handleDelete,
@@ -42,7 +42,9 @@ const SingleTodo: React.FunctionComponent<Props> = ({
         }}
       >
         <Link href={`/todo/[id]`} as={`/todo/${todo.id}`}>
-          <a style={{textDecoration: 'none', color: 'inherit'}}>{todo.todoText}</a>
+          <a style={{ textDecoration: 'none', color: 'inherit' }}>
+            {todo.todoText}
+          </a>
         </Link>
       </Typography>
       <Spacer />

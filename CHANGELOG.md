@@ -1,4 +1,8 @@
 # Change Log
+#### 1.3.0
+- Added an example of how to do static server generation (SSG) on the about page with revalidate being used every 30 seconds
+- Updated deps
+
 #### 1.1.0
 - Updated deps moved to fetch instead of axios
 - General layout tweaks 

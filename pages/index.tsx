@@ -8,7 +8,8 @@ interface Props {
   gipData: string;
 }
 export class IndexPage extends React.Component<Props> {
-  static async getInitialProps({}: NextPageContext) {
+  static async getInitialProps(ctx: NextPageContext) {
+    console.log(ctx.store);
     return {
       gipData: 'Data from getInitialProps of IndexPage',
     };
