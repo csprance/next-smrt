@@ -5,9 +5,9 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { media } from '../../styles/styles';
 import { todoSelector } from '../redux/todo/selectors';
 import { addTodoThunk } from '../redux/todo/slice';
+import { media } from '../styles/styles';
 import SingleTodoContainer from './SingleTodoContainer';
 
 const Column = styled.div`

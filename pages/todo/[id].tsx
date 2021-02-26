@@ -3,8 +3,8 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 
-import Layout from '../../src/components/Layout';
-import SingleTodoContainer from '../../src/containers/SingleTodoContainer';
+import Layout from '../../components/Layout';
+import SingleTodoContainer from '../../containers/SingleTodoContainer';
 
 const TodoIDPage: NextPage = () => {
   const router = useRouter();

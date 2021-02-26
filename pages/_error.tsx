@@ -2,7 +2,7 @@ import Head from 'next/head';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Layout from '../src/components/Layout';
+import Layout from '../components/Layout';
 
 const FlexCenter = styled.div`
   display: flex;

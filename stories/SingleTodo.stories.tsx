@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import * as React from 'react';
-import SingleTodo from '../src/components/SingleTodo';
+import SingleTodo from '../components/SingleTodo';
 
 export default {
   title: 'Single Todo',

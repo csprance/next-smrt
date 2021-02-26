@@ -9,7 +9,7 @@ import {
   SITE_IMAGE,
   SITE_NAME,
   SITE_TITLE,
-} from '../src/constants/env';
+} from '../components/SEO';
 
 class MyDocument extends Document {
   render() {

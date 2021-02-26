@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import * as React from 'react';
 
-import Layout from '../src/components/Layout';
+import Layout from '../components/Layout';
 
 interface Props {
   joke: string;

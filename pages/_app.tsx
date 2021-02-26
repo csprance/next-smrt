@@ -6,7 +6,7 @@ import * as React from 'react';
 import { useStore } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { wrapper } from '../src/store';
+import { wrapper } from '../store';
 import { SweetAlertSyle } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
