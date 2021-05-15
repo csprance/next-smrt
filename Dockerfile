@@ -5,7 +5,7 @@ FROM node:15
 RUN mkdir /app
 WORKDIR /app
 COPY package.json .
-RUN npm install
+RUN yarn install
 COPY . .
 
 # Set up or Environment from the docker-compose file
