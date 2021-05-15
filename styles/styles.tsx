@@ -1,18 +1,12 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import * as React from 'react';
 import Responsive from 'react-responsive';
 import { css } from 'styled-components';
 
 // The material ui theme
-export const theme = createMuiTheme({
+export const theme = createTheme({
   palette: {
-    type: 'dark',
-    primary: {
-      main: '#212121',
-    },
-    secondary: {
-      main: '#0ebf11',
-    },
+    mode: 'dark',
   },
 });
 
