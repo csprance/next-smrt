@@ -1,4 +1,9 @@
 # Change Log
+#### 1.4.1
+- Updated deps
+- Latest Next
+    - Webpack 5 enabled
+
 #### 1.3.0
 - Added an example of how to do static server generation (SSG) on the about page with revalidate being used every 30 seconds
 - Updated deps

@@ -1,5 +1,5 @@
-# node:14
-FROM node:14
+# node:15
+FROM node:15
 
 # install the application
 RUN mkdir /app

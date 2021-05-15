@@ -18,6 +18,7 @@ class ErrorPage extends React.Component<any> {
   }
 
   render() {
+
     const { statusCode } = this.props;
     return (
       <Layout>
