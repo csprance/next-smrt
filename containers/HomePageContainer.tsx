@@ -71,6 +71,7 @@ const HomePageContainer: React.FC = () => {
       <Column>
         <Row>
           <TextField
+            variant={'standard'}
             onKeyDown={handleEnterPressed}
             error={error}
             helperText={error ? 'Please Include Some text.' : ''}

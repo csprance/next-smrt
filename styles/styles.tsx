@@ -6,7 +6,6 @@ import { css } from 'styled-components';
 // The material ui theme
 export const theme = createTheme({
   palette: {
-    mode: 'dark',
   },
 });
 
