@@ -1,14 +1,18 @@
-import Box from '@material-ui/core/Box';
+import { Box } from '@mui/material';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 
 import Layout from '../../components/Layout';
-import SingleTodoContainer from '../../containers/SingleTodoContainer';
+import SingleTodo from "../../components/SingleTodo";
+import { useStore } from '../../store';
 
-const TodoIDPage: NextPage = () => {
-  const router = useRouter();
-  const { id } = router.query;
+const TodoIDPage: NextPage = ({}) => {
+    const router = useRouter();
+    const { id } = router.query;
+    // If we find a todo great! If not the SingleTodoContainer handles the missing case
+    const { todos } = useStore();
+    const todo = todos.find((todo) => todo.id === Number(id));
 
   return (
     <Layout>
@@ -19,17 +23,10 @@ const TodoIDPage: NextPage = () => {
         alignItems={'center'}
         justifyContent={'center'}
       >
-        <SingleTodoContainer id={Number(id)} />
+        <SingleTodo todo={todo} />
       </Box>
     </Layout>
   );
 };
-
-TodoIDPage.getInitialProps = async ()=> {
-    console.log('Getting Initial Props');
-    return {
-        initialProps: true
-    }
-}
 
 export default TodoIDPage;

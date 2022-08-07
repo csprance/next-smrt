@@ -1,46 +1,70 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/styles';
-import App, { AppContext, AppProps } from 'next/app';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Head from 'next/head';
+import nookie from 'nookies';
 import * as React from 'react';
-import { useStore } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 
-import { wrapper } from '../store';
-import { SweetAlertSyle } from '../styles/GlobalStyles';
+import CookiePersistWrapper from '../components/CookiePersist';
+import {
+  Provider,
+  STATE_KEY,
+  State,
+  getDefaultInitialState,
+  useCreateStore,
+} from '../store';
+import { GlobalStyles } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
-  const store = useStore();
+type AppOwnProps = { state: State };
+
+const MyApp = ({ Component, pageProps, state }: AppProps & AppOwnProps) => {
+  const createStore = useCreateStore(state);
+  console.log('MyApp State: ', state);
+  console.log('MyApp pageProps: ', pageProps);
+
   return (
-    <PersistGate
-      persistor={(store as any).__persistor} // This is pretty hacky but recommended by next-redux-wrapper
-      loading={<div>Loading</div>}
-    >
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <SweetAlertSyle />
-        <Head>
-          <title>Next-Smrt</title>
-          <meta
-            name="viewport"
-            content={
-              'user-scalable=0, initial-scale=1, ' +
-              'minimum-scale=1, width=device-width, height=device-height'
-            }
-          />
-        </Head>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </PersistGate>
+    <Provider createStore={createStore}>
+      <CookiePersistWrapper>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <GlobalStyles />
+          <Head>
+            <title>Next-Smrt</title>
+            <meta
+              name="viewport"
+              content={
+                'user-scalable=0, initial-scale=1, ' +
+                'minimum-scale=1, width=device-width, height=device-height'
+              }
+            />
+          </Head>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </CookiePersistWrapper>
+    </Provider>
   );
 };
 
-MyApp.getInitialProps = async (appContext: AppContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
-  const appProps = await App.getInitialProps(appContext);
-
-  return { ...appProps };
+MyApp.getInitialProps = async (
+  context: AppContext,
+): Promise<AppOwnProps & AppInitialProps> => {
+  console.log('Getting initial App Props');
+  const cookieState = nookie.get(context.ctx);
+  if (STATE_KEY in cookieState) {
+    const state: State = JSON.parse(cookieState[STATE_KEY]);
+    console.log('State Exists: Return Cookie State: ', state);
+    return {
+      pageProps: {},
+      state,
+    };
+  }
+  const state = getDefaultInitialState();
+  console.log('No Cookie State Creating Default State: ', state);
+  return {
+    pageProps: {},
+    state,
+  };
 };
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

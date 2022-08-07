@@ -3,7 +3,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 # Next-SMRT
-> Next.js, Styled Components, Material-UI, Redux (With Redux-Toolkit), Typescript
+> Next.js, Styled Components, Material-UI, Zustand (Redux replacement), Typescript
 
 A lot of the next.js examples have some of those features but not all together. So I decided to roll them all into one boilerplate.
 
@@ -14,13 +14,12 @@ I use it to kickstart everything I do now. Works great in production and comes w
 
 ## Features
 ### Uses
- - [next@10](https://github.com/zeit/next.js)
- - [react@17](https://github.com/facebook/react)
- - [typescript](https://github.com/Microsoft/TypeScript)
- - [redux-toolkit](https://github.com/reduxjs/redux-toolkit)
- - [redux-persist](https://github.com/rt2zz/redux-persist)
+ - [NextJS](https://github.com/zeit/next.js)
+ - [React](https://github.com/facebook/react)
+ - [Typescript](https://github.com/Microsoft/TypeScript)
+ - [Zustand](https://github.com/pmndrs/zustand)
+ - [Immer](https://github.com/reduxjs/redux-toolkit)
  - [Jest](https://github.com/facebook/jest)
- - [Storybook](https://github.com/storybookjs/storybook)
  
 
 ### Using cdn
@@ -57,24 +56,24 @@ export const SITE_IMAGE = ''
 #### Installation
 
 ```
-npm install
-npm run dev # run
+yarn
+yarn dev
 ```
 
 #### Test
 
 ```
-npm run test # test
-npm run test:watch
-npm run test:coverage # report coverage
+yarn test # test
+yarn test:watch
+yarn test:coverage # report coverage
 ```
 
 ### Production
 
 ```
-npm install
-npm run build # create .next directory
-npm start # start server
+yarn
+yarn build # create .next directory
+yarn start # start server
 ```
 
 # Docker

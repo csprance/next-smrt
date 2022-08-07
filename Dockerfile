@@ -1,5 +1,4 @@
-# node:15
-FROM node:15
+FROM node:lts
 
 # install the application
 RUN mkdir /app
@@ -20,5 +19,7 @@ ENV API_KEY $API_KEY
 EXPOSE 3000
 
 # build and start
-RUN npm run build
+RUN yarn build
+
+# start
 CMD npm run start

@@ -1,12 +1,11 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import * as React from 'react';
 import Responsive from 'react-responsive';
 import { css } from 'styled-components';
 
 // The material ui theme
 export const theme = createTheme({
-  palette: {
-  },
+  palette: {},
 });
 
 // these sizes are arbitrary and you can set them to whatever you wish
@@ -31,9 +30,9 @@ interface MediaTypes {
   phone: (tString: TemplateStringsArray) => TemplateStringsArray;
 }
 // iterate through the sizes and create a media template
-export const media: MediaTypes = Object.keys(mediaQuerySizes).reduce<
-  MediaTypes
->(
+export const media: MediaTypes = Object.keys(
+  mediaQuerySizes,
+).reduce<MediaTypes>(
   (accumulator, label) => {
     // use em in breakpoints to work properly cross-browser and support users
     // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
@@ -50,5 +49,5 @@ export const media: MediaTypes = Object.keys(mediaQuerySizes).reduce<
     desktop: (str: TemplateStringsArray) => str,
     tablet: (str: TemplateStringsArray) => str,
     phone: (str: TemplateStringsArray) => str,
-  }
+  },
 );
