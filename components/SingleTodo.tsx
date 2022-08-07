@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import * as React from 'react';
 import styled from 'styled-components';
-import {useStore} from "../store";
 
+import { useStore } from '../store';
 import { Todo } from '../store/todo/types';
 
 const Wrapper = styled.div`
@@ -25,15 +25,13 @@ const Spacer = styled.div`
 interface Props {
   todo?: Todo;
 }
-const SingleTodo: React.FunctionComponent<Props> = ({
-  todo
-}) => {
-    const { removeTodo, toggleComplete } = useStore();
-    if (!todo) {
-        return <div>Todo Not Found</div>;
-    }
-    const toggleTodo = () => toggleComplete(todo.id);
-    const deleteTodo = () => removeTodo(todo.id);
+const SingleTodo: React.FunctionComponent<Props> = ({ todo }) => {
+  const { removeTodo, toggleComplete } = useStore();
+  if (!todo) {
+    return <div>Todo Not Found</div>;
+  }
+  const toggleTodo = () => toggleComplete(todo.id);
+  const deleteTodo = () => removeTodo(todo.id);
 
   return (
     <Wrapper>

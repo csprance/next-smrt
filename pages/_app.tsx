@@ -6,23 +6,14 @@ import nookie from 'nookies';
 import * as React from 'react';
 
 import CookiePersistWrapper from '../components/CookiePersist';
-import {
-  Provider,
-  STATE_KEY,
-  State,
-  getDefaultInitialState,
-  useCreateStore,
-} from '../store';
+import { Provider, STATE_KEY, State, useCreateStore } from '../store';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import { theme } from '../styles/styles';
 
-type AppOwnProps = { state: State };
+type AppOwnProps = { pageProps: { state?: State } };
 
-const MyApp = ({ Component, pageProps, state }: AppProps & AppOwnProps) => {
-  const createStore = useCreateStore(state);
-  console.log('MyApp State: ', state);
-  console.log('MyApp pageProps: ', pageProps);
-
+const MyApp = ({ Component, pageProps }: AppProps & AppOwnProps) => {
+  const createStore = useCreateStore(pageProps.state);
   return (
     <Provider createStore={createStore}>
       <CookiePersistWrapper>
@@ -55,15 +46,12 @@ MyApp.getInitialProps = async (
     const state: State = JSON.parse(cookieState[STATE_KEY]);
     console.log('State Exists: Return Cookie State: ', state);
     return {
-      pageProps: {},
-      state,
+      pageProps: { state },
     };
   }
-  const state = getDefaultInitialState();
-  console.log('No Cookie State Creating Default State: ', state);
+  // No state return normal AppProps
   return {
     pageProps: {},
-    state,
   };
 };
 

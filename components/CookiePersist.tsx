@@ -17,7 +17,7 @@ const CookiePersistWrapper: React.FC<Props> = ({
   config: { blacklist } = { blacklist: [] },
   children,
 }) => {
-  const state = useStore((state) => state);
+  const { ...state } = useStore();
 
   useEffect(() => {
     // Filter out state and set it to a cookie
@@ -26,7 +26,7 @@ const CookiePersistWrapper: React.FC<Props> = ({
       'Setting Cookie State from CookiePersistWrapper: ',
       filteredState,
     );
-    setCookie(null, STATE_KEY, JSON.stringify(filteredState));
+    setCookie({}, STATE_KEY, JSON.stringify(filteredState));
   }, [state, blacklist]);
 
   return <>{children}</>;

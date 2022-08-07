@@ -2,7 +2,7 @@ import { parseCookies } from 'nookies';
 
 import { STATE_KEY } from '../store';
 
-export function getCookieState<T>(initialState: T): T {
+export function getCookieState(): object {
   const cookies = parseCookies();
 
   if (STATE_KEY in cookies) {
@@ -12,6 +12,5 @@ export function getCookieState<T>(initialState: T): T {
       ...state,
     };
   }
-  // just return initial state
-  return { ...initialState };
+  return {};
 }

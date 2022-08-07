@@ -6,8 +6,7 @@ import * as React from 'react';
 
 import { useStore } from '../store';
 import { media } from '../styles/styles';
-import SingleTodo from "./SingleTodo";
-
+import SingleTodo from './SingleTodo';
 
 // @ts-ignore
 const Column = styled.div`
