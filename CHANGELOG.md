@@ -1,4 +1,15 @@
 # Change Log
+#### 1.5.0
+- Updated deps
+- Updated MUI and Emotion
+- Dropped Storybook (I'm not using it)
+- Dropped SweetAlert
+- Updated Dockerfile to use node:lts
+- dropped tslint in favor of next lint (which uses eslint)
+- styled-components compiler settings in next-config
+- dropped redux in favor or zustand
+
+
 #### 1.4.1
 - Updated deps
 - Latest Next

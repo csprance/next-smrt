@@ -1,3 +1,4 @@
+import { NextPage } from 'next';
 import Head from 'next/head';
 import * as React from 'react';
 import styled from 'styled-components';
@@ -11,25 +12,24 @@ const FlexCenter = styled.div`
   flex-direction: column;
 `;
 
-class ErrorPage extends React.Component<any> {
-  static getInitialProps({ res, err }: any) {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    return { statusCode };
-  }
+const ErrorPage: NextPage<{
+  statusCode: number;
+}> = ({ statusCode }) => {
+  return (
+    <Layout>
+      <FlexCenter>
+        <Head>
+          <title>Error</title>
+        </Head>
+        <h1>{statusCode}</h1>
+      </FlexCenter>
+    </Layout>
+  );
+};
 
-  render() {
+ErrorPage.getInitialProps = ({ res, err }) => {
+  const statusCode = Number(res ? res.statusCode : err ? err.statusCode : 404);
+  return { statusCode };
+};
 
-    const { statusCode } = this.props;
-    return (
-      <Layout>
-        <FlexCenter>
-          <Head>
-            <title>Error</title>
-          </Head>
-          <h1>{statusCode}</h1>
-        </FlexCenter>
-      </Layout>
-    );
-  }
-}
 export default ErrorPage;

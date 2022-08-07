@@ -1,15 +1,15 @@
-import Fab from '@material-ui/core/Fab';
-import TextField from '@material-ui/core/TextField';
-import AddIcon from '@material-ui/icons/Add';
+import styled from '@emotion/styled';
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab';
+import TextField from '@mui/material/TextField';
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 
-import { todoSelector } from '../redux/todo/selectors';
-import { addTodoThunk } from '../redux/todo/slice';
+import { useStore } from '../store';
 import { media } from '../styles/styles';
-import SingleTodoContainer from './SingleTodoContainer';
+import SingleTodo from "./SingleTodo";
 
+
+// @ts-ignore
 const Column = styled.div`
   align-items: center;
   display: flex;
@@ -33,7 +33,10 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
-const HomePageContainer: React.FC = () => {
+const HomePage: React.FC = () => {
+  // Global State
+  const { todos, addTodo } = useStore();
+
   // Component State
   const [todoText, setTodoText] = React.useState<string>('');
   const [error, setError] = React.useState(false);
@@ -43,10 +46,6 @@ const HomePageContainer: React.FC = () => {
     }
     setTodoText(e.target.value);
   };
-
-  // Redux
-  const dispatch = useDispatch();
-  const todos = useSelector(todoSelector);
   const handleEnterPressed = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       handleAddTodo();
@@ -56,13 +55,7 @@ const HomePageContainer: React.FC = () => {
     if (todoText.length === 0) {
       return setError(true);
     }
-    dispatch(
-      addTodoThunk({
-        todoText,
-        id: Date.now(),
-        completed: false,
-      })
-    );
+    addTodo(todoText);
     setTodoText(''); // Clear the text out
   };
 
@@ -95,12 +88,12 @@ const HomePageContainer: React.FC = () => {
       </Column>
       <Spacer />
       <Column>
-        {todos.map((item) => (
-          <SingleTodoContainer key={item.id} id={item.id} />
+        {todos.map((todo) => (
+          <SingleTodo key={todo.id} todo={todo} />
         ))}
       </Column>
     </>
   );
 };
 
-export default HomePageContainer;
+export default HomePage;

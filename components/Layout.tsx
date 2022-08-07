@@ -1,16 +1,15 @@
-import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
-import Toolbar from '@material-ui/core/Toolbar';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
-import AboutIcon from '@material-ui/icons/Help';
-import MenuIcon from '@material-ui/icons/Menu';
+import AboutIcon from '@mui/icons-material/Help';
+import MenuIcon from '@mui/icons-material/Menu';
+import AppBar from '@mui/material/AppBar';
+import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 import Head from 'next/head';
 import Link from 'next/link';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { notify } from '../lib/notify';
 import GithubIcon from './icons/GithubIcon';
 
 const Wrapper = styled.div`
@@ -24,10 +23,8 @@ const Spacer = styled.div`
   height: 50px;
 `;
 
-const Layout: React.FC = ({ children }) => {
-  const handleMenuButtonClick = () => {
-    notify('Also comes with SweetAlert');
-  };
+const Layout = ({ children }: React.PropsWithChildren) => {
+  const handleMenuButtonClick = () => {};
 
   return (
     <Wrapper>

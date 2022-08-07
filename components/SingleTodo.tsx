@@ -1,12 +1,13 @@
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import * as React from 'react';
 import styled from 'styled-components';
+import {useStore} from "../store";
 
-import { Todo } from '../redux/todo/types';
+import { Todo } from '../store/todo/types';
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,15 +23,18 @@ const Spacer = styled.div`
 `;
 
 interface Props {
-  todo: Todo;
-  handleCheckBoxTick: () => void;
-  handleDelete: () => void;
+  todo?: Todo;
 }
 const SingleTodo: React.FunctionComponent<Props> = ({
-  todo,
-  handleDelete,
-  handleCheckBoxTick,
+  todo
 }) => {
+    if (!todo) {
+        return <div>Todo Not Found</div>;
+    }
+    const { removeTodo, toggleComplete } = useStore();
+    const toggleTodo = () => toggleComplete(todo.id);
+    const deleteTodo = () => removeTodo(todo.id);
+
   return (
     <Wrapper>
       <Typography
@@ -43,17 +47,17 @@ const SingleTodo: React.FunctionComponent<Props> = ({
       >
         <Link href={`/todo/[id]`} as={`/todo/${todo.id}`}>
           <a style={{ textDecoration: 'none', color: 'inherit' }}>
-            {todo.todoText}
+            {todo.text}
           </a>
         </Link>
       </Typography>
       <Spacer />
 
-      <IconButton href={'#'} onClick={handleDelete}>
+      <IconButton href={'#'} onClick={deleteTodo}>
         <DeleteIcon />
       </IconButton>
 
-      <Checkbox checked={todo.completed} onChange={handleCheckBoxTick} />
+      <Checkbox checked={todo.completed} onChange={toggleTodo} />
     </Wrapper>
   );
 };
