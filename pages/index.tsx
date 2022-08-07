@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Layout from '../components/Layout';
-import HomePage from '../containers/HomePageContainer';
+import HomePage from '../components/HomePage';
 
 function Index() {
   return (
