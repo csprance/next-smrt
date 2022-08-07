@@ -28,10 +28,10 @@ interface Props {
 const SingleTodo: React.FunctionComponent<Props> = ({
   todo
 }) => {
+    const { removeTodo, toggleComplete } = useStore();
     if (!todo) {
         return <div>Todo Not Found</div>;
     }
-    const { removeTodo, toggleComplete } = useStore();
     const toggleTodo = () => toggleComplete(todo.id);
     const deleteTodo = () => removeTodo(todo.id);
 
