@@ -1,9 +1,8 @@
 import { useLayoutEffect } from 'react';
 import create, { StoreApi, UseBoundStore } from 'zustand';
 import createContext from 'zustand/context';
-import { combine, devtools } from 'zustand/middleware';
+import { devtools } from 'zustand/middleware';
 
-import { getCookieState } from '../lib/cookie-persist';
 import defaultTodos from './todo/state';
 import { Todo } from './todo/types';
 import { generateNewID } from './todo/utils';
@@ -12,47 +11,39 @@ let store: StoreApi<MyStore>;
 
 export const STATE_KEY = 'next-smrt-cookie-state';
 
-export const getDefaultInitialState: () => State = () => {
-  console.log('Getting Default Initial State');
-  return {
-    todos: defaultTodos,
-    ...getCookieState(),
-  };
-};
-const defaultState = getDefaultInitialState();
+export const getDefaultInitialState: () => State = () => ({
+  todos: defaultTodos,
+});
 
 export const initializeStore = (preloadedState: State | undefined) => {
-  console.log('Initialize Store');
+  console.log('initializeStore');
   return create<MyStore>()(
-    devtools(
-      combine(
-        preloadedState ? { ...preloadedState } : { ...defaultState },
-        (set, get) => ({
-          addTodo: (text) =>
-            set((state) => ({
-              todos: [
-                ...state.todos,
-                {
-                  text,
-                  completed: false,
-                  id: generateNewID(state.todos),
-                },
-              ],
-            })),
-          removeTodo: (id) =>
-            set((state) => ({
-              todos: state.todos.filter((t) => t.id !== id),
-            })),
-          toggleComplete: (id) =>
-            set((state) => ({
-              todos: state.todos.map((t) => ({
-                ...t,
-                completed: t.id === id ? !t.completed : t.completed,
-              })),
-            })),
-        }),
-      ),
-    ),
+    devtools((set, get) => ({
+      ...getDefaultInitialState(),
+      ...preloadedState,
+      addTodo: (text) =>
+        set((state) => ({
+          todos: [
+            ...state.todos,
+            {
+              text,
+              completed: false,
+              id: generateNewID(state.todos),
+            },
+          ],
+        })),
+      removeTodo: (id) =>
+        set((state) => ({
+          todos: state.todos.filter((t) => t.id !== id),
+        })),
+      toggleComplete: (id) =>
+        set((state) => ({
+          todos: state.todos.map((t) => ({
+            ...t,
+            completed: t.id === id ? !t.completed : t.completed,
+          })),
+        })),
+    })),
   );
 };
 export interface State {

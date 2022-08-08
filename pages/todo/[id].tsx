@@ -1,11 +1,18 @@
 import { Box } from '@mui/material';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 
 import Layout from '../../components/Layout';
 import SingleTodo from '../../components/SingleTodo';
+import { getCookieProps } from '../../lib/cookie-persist';
 import { useStore } from '../../store';
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: { state: getCookieProps(context) },
+  };
+};
 
 const TodoIDPage: NextPage = ({}) => {
   const router = useRouter();

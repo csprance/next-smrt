@@ -1,16 +1,16 @@
-import { parseCookies } from 'nookies';
+import { GetServerSidePropsContext } from 'next';
+import nookie, { parseCookies } from 'nookies';
 
-import { STATE_KEY } from '../store';
+import { STATE_KEY, State } from '../store';
 
-export function getCookieState(): object {
+export function getCookieStore(): object {
   const cookies = parseCookies();
 
-  if (STATE_KEY in cookies) {
-    const state = JSON.parse(cookies[STATE_KEY]);
-    return {
-      // Merged with new state
-      ...state,
-    };
-  }
-  return {};
+  return STATE_KEY in cookies ? (JSON.parse(cookies[STATE_KEY]) as State) : {};
+}
+
+export function getCookieProps(context: GetServerSidePropsContext) {
+  const cookies = nookie.get(context);
+
+  return STATE_KEY in cookies ? (JSON.parse(cookies[STATE_KEY]) as State) : {};
 }
